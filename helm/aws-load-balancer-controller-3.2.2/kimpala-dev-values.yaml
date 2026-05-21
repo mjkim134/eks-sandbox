@@ -1,0 +1,6 @@
+serviceAccount:
+  create: true
+  name: aws-load-balancer-controller
+clusterName: kimpala-dev
+region: ap-northeast-2
+vpcId: vpc-0bc2b372b17898365
