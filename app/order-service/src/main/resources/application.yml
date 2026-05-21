@@ -1,0 +1,35 @@
+server:
+  port: 8082 # 게이트웨이(8080), 인증(8081)과 겹치지 않게 8082 설정
+
+spring:
+  application:
+    name: order-service
+
+  # 1. 주문 저장용 MySQL 설정
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/order_db?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  # 2. 핵심: 카프카 클러스터 연결 설정
+  kafka:
+    bootstrap-servers: ${SPRING_KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      # 메시지를 보낼 때 Key와 Value를 어떤 형태로 직렬화(바이트 변환)할지 정의
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      show-details: always
