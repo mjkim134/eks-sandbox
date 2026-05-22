@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EKS Demo App</title>
+    <title>Request-Reward System</title>
     <style>
         body { font-family: -apple-system, sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 350px; text-align: center; }
+        .card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); width: 400px; text-align: center; }
         h1 { font-size: 24px; color: #1c1e21; margin-bottom: 30px; }
         .btn { display: block; width: 100%; padding: 15px; margin-bottom: 20px; border: none; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.1s; }
         .btn-primary { background: #007bff; color: white; }
@@ -17,48 +17,48 @@
 </head>
 <body>
     <div class="card">
-        <h1>🚀 Simple Order System</h1>
+        <h1>Request-Reward System</h1>
         
-        <!-- 오직 이 버튼 하나만 존재합니다 -->
-        <button class="btn btn-primary" onclick="placeOrder()">Place Order</button>
+        <!-- 보상 받기 버튼 -->
+        <button class="btn btn-primary" onclick="submitRequest()">Request Event</button>
         
         <div class="status">
-            Total Orders: <span id="countDisplay">0</span>
+            Total Rewards Issued: <span id="countDisplay">0</span>
         </div>
     </div>
 
     <script>
-        const ORDER_API = '/api/orders';
-        const COUNT_API = '/api/count';
+        const REQUEST_API = '/api/requests';
+        const REWARD_API = '/api/rewards';
 
-        async function placeOrder() {
+        async function submitRequest() {
             const btn = document.querySelector('.btn-primary');
             btn.disabled = true;
-            btn.innerText = 'Processing...';
+            btn.innerText = 'Processing Request...';
 
             try {
-                const response = await fetch(ORDER_API, { method: 'POST' });
+                const response = await fetch(REQUEST_API, { method: 'POST' });
                 if (response.ok) {
                     // Kafka/Redis 처리를 기다리기 위해 0.5초 후 통계 갱신
                     setTimeout(fetchStats, 500);
                 } else {
-                    console.error('Order failed');
+                    console.error('Request failed');
                 }
             } catch (err) {
                 console.error('Connection error', err);
             } finally {
                 btn.disabled = false;
-                btn.innerText = 'Place Order';
+                btn.innerText = 'Request Event';
             }
         }
 
         async function fetchStats() {
             const display = document.getElementById('countDisplay');
             try {
-                const response = await fetch(COUNT_API);
+                const response = await fetch(REWARD_API);
                 if (response.ok) {
                     const text = await response.text();
-                    // "Total orders processed: X" 에서 숫자만 추출해서 표시
+                    // 숫자만 추출해서 표시
                     const match = text.match(/\d+/);
                     if(match) display.innerText = match[0];
                 }

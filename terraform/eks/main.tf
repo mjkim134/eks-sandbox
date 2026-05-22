@@ -6,6 +6,7 @@ module "eks" {
   kubernetes_version = local.cluster_version
 
   endpoint_public_access                   = true
+  endpoint_public_access_cidrs             = [var.my_ip_cidr]
   enable_cluster_creator_admin_permissions = true
 
   # EKS Addons
