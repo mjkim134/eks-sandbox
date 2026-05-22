@@ -1,18 +1,16 @@
 services:
   mysql:
     image: mysql:8.0
-    container_name: auth-mysql
+    container_name: mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: msa_db
     ports:
       - "3306:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
 
   redis:
     image: redis:latest
-    container_name: auth-redis
+    container_name: redis
     ports:
       - "6379:6379"
 
@@ -29,25 +27,39 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:29093
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
     ports:
       - "9092:9092"
-    volumes:
-      - kafka_data:/var/lib/kafka/data
 
-  kafka-ui:
-    image: provectuslabs/kafka-ui:latest
-    container_name: kafka-ui
+  front-service:
+    build: ./front-service
+    container_name: front
     ports:
-      - "8090:8080"
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+      - "80:80"
+    volumes:
+      - ./front-service/index.html:/usr/share/nginx/html/index.html:ro
+      - ./front-service/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
+      - mysql
+      - redis
       - kafka
 
-volumes:
-  mysql_data:
-  kafka_data:
+  Optional: Dockerizing Java Services (For later use)
+  order-service:
+    build: ./order-service
+    container_name: order-service
+    ports:
+      - "8080:8080"
+    environment:
+      MYSQL_HOST: mysql
+      KAFKA_SERVERS: kafka:29092
+  
+  count-service:
+    build: ./count-service
+    container_name: count-service
+    ports:
+      - "8081:8081"
+    environment:
+      REDIS_HOST: redis
+      KAFKA_SERVERS: kafka:29092
