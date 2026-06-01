@@ -4,8 +4,8 @@ sources:
   - ingress
 aws:
   region: ap-northeast-2
-  policy: sync
-  txtOwnerId: kimpala-dev
+policy: sync
+txtOwnerId: kimpala-dev
 serviceAccount:
   name: external-dns
   annotations:

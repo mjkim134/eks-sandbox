@@ -15,12 +15,9 @@ spec:
         - key: karpenter.sh/capacity-type
           operator: In
           values: ["spot"]
-        - key: karpenter.k8s.aws/instance-category
+        - key: karpenter.k8s.aws/instance-type
           operator: In
-          values: ["c", "m", "r"]
-        - key: karpenter.k8s.aws/instance-generation
-          operator: Gt
-          values: ["2"]
+          values: ["t3.medium","t3a.medium"]
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
@@ -37,7 +34,7 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  role: "KarpenterNodeRole-kimpala-dev" # replace with your cluster name
+  role: "init-eks-node-group-2026060116244414670000000b"
   amiSelectorTerms:
     - alias: "al2023@v20260423"
   subnetSelectorTerms:

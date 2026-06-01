@@ -2,5 +2,5 @@ clusterName: kimpala-dev
 serviceAccount:
   create: true
   name: aws-load-balancer-controller
-annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/load-balancer-controller-2026060116325235090000000c
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/load-balancer-controller-2026060116325235090000000c
