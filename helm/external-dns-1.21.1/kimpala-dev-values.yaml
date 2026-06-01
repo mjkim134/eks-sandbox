@@ -1,6 +1,12 @@
+namespaceOverride: kube-system
+sources:
+  - service
+  - ingress
+aws:
+  region: ap-northeast-2
+  policy: sync
+  txtOwnerId: kimpala-dev
 serviceAccount:
-  create: true
   name: external-dns
-clusterName: kimpala-dev
-region: ap-northeast-2
-vpcId: vpc-0bc2b372b17898365
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/external-dns-2026060116325235100000000d
