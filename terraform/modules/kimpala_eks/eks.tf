@@ -20,8 +20,6 @@ module "eks" {
   encryption_config        = null
 
   create_node_iam_role        = false
-  create_cloudwatch_log_group = false
-  enabled_log_types           = []
   create_kms_key              = false
   create_security_group       = true
   create_node_security_group  = true

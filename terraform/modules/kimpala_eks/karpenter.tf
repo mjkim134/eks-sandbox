@@ -56,7 +56,7 @@ resource "aws_iam_policy" "karpenter_controller" {
         "Action" : "ec2:TerminateInstances",
         "Condition" : {
           "StringLike" : {
-            "ec2:ResourceTag/karpenter.sh/provisioner-name" : "*"
+            "ec2:ResourceTag/karpenter.sh/nodeool" : "*"
           }
         },
         "Resource" : "*"
