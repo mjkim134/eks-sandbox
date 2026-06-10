@@ -23,12 +23,6 @@ resource "aws_instance" "teamcity_server" {
   }
 }
 
-resource "aws_ebs_volume" "teamcity_data" {
-    availability_zone = module.vpc.azs[0]
-    size              = 30
-    type              = "gp3"
-}
-
 resource "aws_volume_attachment" "teamcity_data" {
     device_name = "/dev/sdf"
     volume_id   = aws_ebs_volume.teamcity_data.id
