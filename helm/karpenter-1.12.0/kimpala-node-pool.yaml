@@ -43,3 +43,10 @@ spec:
   securityGroupSelectorTerms:
     - tags:
         karpenter.sh/discovery: kimpala-dev # replace with your cluster name
+  tags:
+      Service: "Test"
+      Organization: "tech"
+      Team: "tech/devops"
+      Resource: "eks"
+      Env: "dev"
+      Terraformed: "true"
