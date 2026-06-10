@@ -13,6 +13,13 @@ data "aws_ami" "ubuntu" {
     }
 }
 
+data "aws_ebs_volume" "teamcity_data" {
+    filter {
+        name   = "tag:Name"
+        values = ["teamcity-data"]
+    }
+}
+
 resource "aws_instance" "teamcity_server" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = "t3a.medium"
@@ -25,7 +32,7 @@ resource "aws_instance" "teamcity_server" {
 
 resource "aws_volume_attachment" "teamcity_data" {
     device_name = "/dev/sdf"
-    volume_id   = aws_ebs_volume.teamcity_data.id
+    volume_id   = data.aws_ebs_volume.teamcity_data.id
     instance_id = aws_instance.teamcity_server.id
 }
 
