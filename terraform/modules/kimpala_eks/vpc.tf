@@ -36,3 +36,11 @@ module "vpc" {
 
   tags = var.tags
 }
+
+resource "aws_vpc_endpoint" "s3_endpoint" {
+  vpc_id       = aws_vpc.this.id
+  service_name = "com.amazonaws.${var.region}.s3"
+  route_table_ids = module.vpc.private_route_table_ids
+
+  tags = var.tags
+}
