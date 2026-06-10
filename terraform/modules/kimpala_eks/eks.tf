@@ -19,13 +19,19 @@ module "eks" {
   attach_encryption_policy = false
   encryption_config        = null
 
-  create_node_iam_role        = false
-  create_kms_key              = false
-  create_security_group       = true
-  create_node_security_group  = true
+  create_node_iam_role  = false
+  create_kms_key        = false
+  create_security_group = true
+
+  security_group_tags = {
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+  }
+  
+  create_node_security_group = true
 
   node_security_group_tags = {
-    "karpenter.sh/discovery" = var.cluster_name
+    "karpenter.sh/discovery"                    = var.cluster_name
+    "kubernetes.io/cluster/${var.cluster_name}" = "owned"
   }
 
   addons = {
@@ -86,14 +92,17 @@ module "eks" {
       }
 
       metadata_options = {
-      http_endpoint               = "enabled"
-      http_tokens                 = "required"
-      http_put_response_hop_limit = 2
+        http_endpoint               = "enabled"
+        http_tokens                 = "required"
+        http_put_response_hop_limit = 2
       }
 
       subnet_ids = module.vpc.private_subnets
 
-      tags = { Name = "init" }
+      tags = {
+        Name                                        = "init"
+        "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+      }
     }
   }
 
