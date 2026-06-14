@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: eks-demo
+  config:
+    import: optional:aws-secretsmanager:/secret/eks-demo
+
+sample:
+  id: ${id:test-id}
+  password: ${password:test-password}

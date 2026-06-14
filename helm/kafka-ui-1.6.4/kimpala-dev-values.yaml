@@ -1,5 +1,0 @@
-yamlApplicationConfig:
-  kafka:
-    clusters:
-      - name: kimpala-dev-kafka
-        bootstrapServers: kafka-cluster-kafka-bootstrap:9092
