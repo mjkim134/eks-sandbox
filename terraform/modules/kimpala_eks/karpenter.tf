@@ -30,6 +30,13 @@ resource "aws_iam_policy" "karpenter_controller" {
         "Sid" : "Karpenter",
         "Effect" : "Allow",
         "Action" : [
+          "iam:CreateInstanceProfile",
+          "iam:AddRoleToInstanceProfile",
+          "iam:RemoveRoleFromInstanceProfile",
+          "iam:DeleteInstanceProfile",
+          "iam:GetInstanceProfile",
+          "iam:TagInstanceProfile",
+          "iam:ListInstanceProfiles",
           "ssm:GetParameter",
           "iam:PassRole",
           "ec2:DescribeImages",
@@ -56,7 +63,7 @@ resource "aws_iam_policy" "karpenter_controller" {
         "Action" : "ec2:TerminateInstances",
         "Condition" : {
           "StringLike" : {
-            "ec2:ResourceTag/karpenter.sh/nodeool" : "*"
+            "ec2:ResourceTag/karpenter.sh/nodepool" : "*"
           }
         },
         "Resource" : "*"
