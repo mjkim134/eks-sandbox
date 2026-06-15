@@ -15,14 +15,14 @@ spec:
         - key: karpenter.sh/capacity-type
           operator: In
           values: ["spot"]
-        - key: karpenter.k8s.aws/instance-type
+        - key: node.kubernetes.io/instance-type
           operator: In
           values: ["t3.medium","t3a.medium"]
       nodeClassRef:
         group: karpenter.k8s.aws
         kind: EC2NodeClass
         name: default
-      expireAfter: 720h # 30 * 24h = 720h
+      expireAfter: 720h
   limits:
     cpu: 1000
   disruption:
@@ -34,15 +34,15 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  role: "init-eks-node-group-2026060116244414670000000b"
+  role: init-eks-node-group-2026061503264244190000000d
   amiSelectorTerms:
     - alias: "al2023@v20260423"
   subnetSelectorTerms:
     - tags:
-        karpenter.sh/discovery: kimpala-dev # replace with your cluster name
+        karpenter.sh/discovery: kimpala-dev
   securityGroupSelectorTerms:
     - tags:
-        karpenter.sh/discovery: kimpala-dev # replace with your cluster name
+        karpenter.sh/discovery: kimpala-dev
   tags:
       Service: "Test"
       Organization: "tech"

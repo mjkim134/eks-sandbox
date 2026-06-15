@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket         = "kimpala-id-tfstate"
-    key            = "eks/terraform.tfstate"
+    key            = "terraform/eks/terraform.tfstate"
     region         = "ap-northeast-2"
     use_lockfile   = true
   }

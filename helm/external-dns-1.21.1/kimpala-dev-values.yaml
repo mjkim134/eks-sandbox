@@ -9,4 +9,4 @@ txtOwnerId: kimpala-dev
 serviceAccount:
   name: external-dns
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/external-dns-2026060116325235100000000d
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/external-dns-20260615033520208000000011

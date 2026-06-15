@@ -23,7 +23,7 @@ affinity:
         - key: eks.amazonaws.com/nodegroup
           operator: In
           values:
-          - init-20260601163327839800000012
+          - init-20260615033554796000000015
   podAntiAffinity:
     requiredDuringSchedulingIgnoredDuringExecution:
       - topologyKey: "kubernetes.io/hostname"
