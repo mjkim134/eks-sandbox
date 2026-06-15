@@ -13,7 +13,6 @@ permissions:
 
 env:
   REGION: ap-northeast-2
-  CLUSTER_NAME: kimpala-dev
   APP_NAME: eks-demo
 
 jobs:
@@ -21,6 +20,10 @@ jobs:
     if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./eks-demo
+    
     steps:
     - uses: actions/checkout@v4
 
