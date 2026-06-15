@@ -1,0 +1,61 @@
+name: Java CI with Gradle
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [closed]
+    
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
+env:
+  REGION: ap-northeast-2
+  CLUSTER_NAME: kimpala-dev
+  APP_NAME: eks-demo
+
+jobs:
+  build:
+    if: ${{ github.event.pull_request.merged }}
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    # Get Short SHA in 8 Length
+    - name: get shortsha
+      id: vars
+      run: |
+        echo "sha_short=$(git rev-parse --short=8 ${{ github.sha }})" >> $GITHUB_OUTPUT
+
+    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
+    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+
+    - name: Build with Gradle Wrapper
+      run: ./gradlew bootBuildImage --imageName=${{ secrets.AWS_ACCOUNT_NUM }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/${{ env.APP_NAME }}:d${{ steps.vars.outputs.sha_short }}
+
+    # AWS 인증
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: ${{ env.REGION }}
+        role-to-assume: ${{ secrets.ASSUME_IAM_ROLE }}
+
+    # ECR LOGIN
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v2
+
+    - name: Publish Docker image
+      run: |
+          docker push ${{ secrets.AWS_ACCOUNT_NUM }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/${{ env.APP_NAME }}:d${{ steps.vars.outputs.sha_short }}    
