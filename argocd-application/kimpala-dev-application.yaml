@@ -12,12 +12,6 @@ spec:
     helm:
       valueFiles:
         - kimpala-dev-values.yaml
-      parameters:
-        - name: image.repository
-          value: "<AWS_ACCOUNT_NUM>.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo"
-      parameters:
-        - name: ingress.annotations.alb.ingress.kubernetes.io/certificate-arn
-          value: "arn:aws:acm:ap-northeast-2:<AWS_ACCOUNT_NUM>:certificate/4a1e6268-b3a2-4ce2-8482-2e891acecc89"
   destination:
     server: https://kubernetes.default.svc
     namespace: eks-demo
