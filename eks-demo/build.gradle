@@ -13,8 +13,6 @@ java {
     }
 }
 
-
-
 repositories {
     mavenCentral()
 }
