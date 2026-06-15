@@ -8,7 +8,7 @@ on:
     
 permissions:
   id-token: write
-  contents: read
+  contents: write
   packages: write
 
 env:
@@ -62,3 +62,21 @@ jobs:
     - name: Publish Docker image
       run: |
           docker push ${{ secrets.AWS_ACCOUNT_NUM }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/${{ env.APP_NAME }}:d${{ steps.vars.outputs.sha_short }}    
+
+    - name: Change Image tag
+      run: |
+        sed -i "s|tag: .*|tag: \"d${{ steps.vars.outputs.sha_short }}\"|g" ../helm/eks-demo-app/kimpala-dev-values.yaml
+        ls
+      shell: bash
+
+    - name: GIT commit and push docs
+      env:
+        CI_COMMIT_MESSAGE: Update Tag - d${{ steps.vars.outputs.sha_short }}
+        CI_COMMIT_AUTHOR: mjkim134
+      run: |
+        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
+        git config --global user.email "mjkim134@gmail.com"
+        git status
+        git add ../helm/eks-demo-app/kimpala-dev-values.yaml
+        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
+        git push origin main
