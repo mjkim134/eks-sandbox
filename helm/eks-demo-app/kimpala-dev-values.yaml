@@ -64,6 +64,7 @@ ingress:
   annotations: 
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
+    alb.ingress.kubernetes.io/group.name: sg-external
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/certificate-arn: >-
       arn:aws:acm:ap-northeast-2:<AWS_ACCOUNT_NUM>:certificate/4a1e6268-b3a2-4ce2-8482-2e891acecc89
