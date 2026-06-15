@@ -26,7 +26,7 @@ grafana:
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
       alb.ingress.kubernetes.io/ssl-redirect: "443"
       alb.ingress.kubernetes.io/success-codes: 200-302
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:728138073365:certificate/4a1e6268-b3a2-4ce2-8482-2e891acecc89
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:<AWS_ACCOUNT_NUM>:certificate/4a1e6268-b3a2-4ce2-8482-2e891acecc89
       external-dns.alpha.kubernetes.io/hostname: grafana.mjkim.click
     hosts:
     - grafana.mjkim.click
