@@ -29,7 +29,7 @@ data "aws_iam_policy_document" "github_actions_assume_role_document" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values = [
-        "repo:mjkim134/eks-sandbox:*",
+        "repo:example/eks-sandbox:*",
       ]
     }
 

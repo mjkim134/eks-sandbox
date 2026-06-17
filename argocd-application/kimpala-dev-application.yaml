@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/mjkim134/eks-sandbox.git
+    repoURL: https://github.com/example/eks-sandbox.git
     targetRevision: HEAD
     path: helm/eks-demo-app
     helm:
