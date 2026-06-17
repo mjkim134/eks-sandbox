@@ -72,10 +72,10 @@ jobs:
     - name: GIT commit and push docs
       env:
         CI_COMMIT_MESSAGE: Update Tag - d${{ steps.vars.outputs.sha_short }}
-        CI_COMMIT_AUTHOR: mjkim134
+        CI_COMMIT_AUTHOR: example
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "mjkim134@gmail.com"
+        git config --global user.email "example@gmail.com"
         git status
         git add ../helm/eks-demo-app/kimpala-dev-values.yaml
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
