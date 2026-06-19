@@ -34,7 +34,7 @@ kind: EC2NodeClass
 metadata:
   name: default
 spec:
-  role: init-eks-node-group-2026061503264244190000000d
+  role: <KARPENTER_NODE_IAM_ROLE>
   amiSelectorTerms:
     - alias: "al2023@v20260423"
   subnetSelectorTerms:
