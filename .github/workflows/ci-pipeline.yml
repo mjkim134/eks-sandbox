@@ -77,6 +77,6 @@ jobs:
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
         git config --global user.email "example@gmail.com"
         git status
-        git add ../helm/eks-demo-app/kimpala-dev-values.yaml
+        git add ../helm-values/eks-demo-app-dev-values.yaml
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push origin main
