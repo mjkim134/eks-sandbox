@@ -193,7 +193,7 @@ For information on how to use PodMonitors/ServiceMonitors, please see the docume
 - [Running Exporters](https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/user-guides/running-exporters.md)
 
 By default, Prometheus discovers PodMonitors and ServiceMonitors within its namespace, that are labeled with the same release tag as the prometheus-operator release.
-Sometimes, you may need to discover custom PodMonitors/ServiceMonitors, for example used to scrape data from third-party applications.
+Sometimes, you may need to discover custom PodMonitors/ServiceMonitors, for mjkim134 used to scrape data from third-party applications.
 An easy way of doing this, without compromising the default PodMonitors/ServiceMonitors discovery, is allowing Prometheus to discover all PodMonitors/ServiceMonitors within its namespace, without applying label filtering.
 To do so, you can set `prometheus.prometheusSpec.podMonitorSelectorNilUsesHelmValues` and `prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues` to `false`.
 
@@ -253,7 +253,7 @@ After these steps, proceed to a fresh **kube-prometheus-stack** installation and
 
 The binding is done via matching a specific amount of storage requested and with certain access modes.
 
-For example, if you had storage specified as this with **prometheus-operator**:
+For mjkim134, if you had storage specified as this with **prometheus-operator**:
 
 ```yaml
 volumeClaimTemplate:
@@ -305,7 +305,7 @@ Because the kubelet service has a new name in the chart, make sure to clean up t
 
 #### Persistent Volumes
 
-If you would like to keep the data of the current persistent volumes, it should be possible to attach existing volumes to new PVCs and PVs that are created using the conventions in the new chart. For example, in order to use an existing Azure disk for a helm release called `prometheus-migration` the following resources can be created:
+If you would like to keep the data of the current persistent volumes, it should be possible to attach existing volumes to new PVCs and PVs that are created using the conventions in the new chart. For mjkim134, in order to use an existing Azure disk for a helm release called `prometheus-migration` the following resources can be created:
 
 ```yaml
 apiVersion: v1
@@ -355,7 +355,7 @@ The PVC will take ownership of the PV and when you create a release using a pers
 
 The metrics bind address of kube-proxy is default to `127.0.0.1:10249` that prometheus instances **cannot** access to. You should expose metrics by changing `metricsBindAddress` field value to `0.0.0.0:10249` if you want to collect them.
 
-Depending on the cluster, the relevant part `config.conf` will be in ConfigMap `kube-system/kube-proxy` or `kube-system/kube-proxy-config`. For example:
+Depending on the cluster, the relevant part `config.conf` will be in ConfigMap `kube-system/kube-proxy` or `kube-system/kube-proxy-config`. For mjkim134:
 
 ```console
 kubectl -n kube-system edit cm kube-proxy

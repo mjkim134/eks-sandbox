@@ -16,7 +16,7 @@ For instance, rather than adding repositories and their keys in your Helm values
 
 ## High Availability
 
-This chart installs the non-HA version of Argo CD by default. If you want to run Argo CD in HA mode, you can use one of the example values in the next sections.
+This chart installs the non-HA version of Argo CD by default. If you want to run Argo CD in HA mode, you can use one of the mjkim134 values in the next sections.
 Please also have a look into the upstream [Operator Manual regarding High Availability](https://argo-cd.readthedocs.io/en/stable/operator-manual/high_availability/) to understand how scaling of Argo CD works in detail.
 
 > **Warning:**
@@ -75,7 +75,7 @@ The `tls: true` option will expect that the `argocd-server-tls` secret exists as
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 certificate:
   enabled: true
@@ -94,7 +94,7 @@ server:
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 configs:
   params:
@@ -109,7 +109,7 @@ server:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     extraTls:
       - hosts:
-        - argocd.example.com
+        - argocd.mjkim134.com
         # Based on the ingress controller used secret might be optional
         secretName: wildcard-tls
 ```
@@ -123,7 +123,7 @@ Use `ingressGrpc` section if your ingress controller supports only a single prot
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 configs:
   params:
@@ -135,7 +135,7 @@ server:
     ingressClassName: contour-internal
     extraTls:
       - hosts:
-        - argocd.example.com
+        - argocd.mjkim134.com
         secretName: wildcard-tls
 
    ingressGrpc:
@@ -143,7 +143,7 @@ server:
      ingressClassName: contour-internal
      extraTls:
       - hosts:
-        - grpc.argocd.example.com
+        - grpc.argocd.mjkim134.com
         secretName: wildcard-tls
 ```
 
@@ -151,7 +151,7 @@ server:
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 server:
   ingress:
@@ -162,21 +162,21 @@ server:
       nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     tls: true
     extraHosts:
-      - name: argocd-alias.example.com
+      - name: argocd-alias.mjkim134.com
         path: /
 ```
 
 ### AWS Application Load Balancer
 
 Refer to the Operator Manual for [AWS Application Load Balancer mode](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#aws-application-load-balancers-albs-and-classic-elb-http-mode).
-The provided example assumes you are using TLS off-loading via AWS ACM service.
+The provided mjkim134 assumes you are using TLS off-loading via AWS ACM service.
 
 > **Note:**
 > Using `controller: aws` creates additional service for gRPC traffic and it's no longer need to use `ingressGrpc` configuration section.
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 configs:
   params:
@@ -205,7 +205,7 @@ automatically if you provide configuration for GKE resources.
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 configs:
   params:
@@ -244,7 +244,7 @@ webapprouting provides a managed ingress controller based on nginx.
 
 ```yaml 
 global: 
-  domain: argocd.example.com 
+  domain: argocd.mjkim134.com 
  
 configs: 
   params: 
@@ -259,7 +259,7 @@ server:
       # Optional: Add any AKS-specific annotations if needed 
     extraTls: 
       - hosts: 
-          - argocd.example.com 
+          - argocd.mjkim134.com 
         # Certificate can be managed by Web Application Routing 
         secretName: argocd-tls
 ```
@@ -273,13 +273,13 @@ The Gateway API provides a modern, extensible way to configure ingress traffic r
 
 ```yaml
 global:
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
 server:
   httproute:
     enabled: true
     parentRefs:
-      - name: example-gateway
+      - name: mjkim134-gateway
         namespace: gateway-system
         sectionName: https
 ```
@@ -293,14 +293,14 @@ server:
   httproute:
     enabled: true
     parentRefs:
-      - name: example-gateway
+      - name: mjkim134-gateway
         namespace: gateway-system
         sectionName: https
 
   grpcroute:
     enabled: true
     parentRefs:
-      - name: example-gateway
+      - name: mjkim134-gateway
         namespace: gateway-system
         sectionName: grpc
 ```
@@ -321,7 +321,7 @@ server:
   httproute:
     enabled: true
     parentRefs:
-      - name: example-gateway
+      - name: mjkim134-gateway
         namespace: gateway-system
 
   backendTLSPolicy:
@@ -377,7 +377,7 @@ Changes in the `CustomResourceDefinition` resources shall be fixed easily by cop
 
 ### Custom resource definitions
 
-The chart enables server-side apply for CustomResourceDefinitions when using Argo CD to install Argo CD using the `crds.annotations.argocd.argoproj.io/sync-options` annotation. This default avoids client-side apply size limits that can affect large CRDs (for example, ApplicationSet CRDs) and follows the upstream upgrade guidance: https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.2-3.3/#applicationset-crd-exceeds-the-size-limit-for-client-side-apply. If you install the CRDs manually using kubectl make sure to enable server-side apply.
+The chart enables server-side apply for CustomResourceDefinitions when using Argo CD to install Argo CD using the `crds.annotations.argocd.argoproj.io/sync-options` annotation. This default avoids client-side apply size limits that can affect large CRDs (for mjkim134, ApplicationSet CRDs) and follows the upstream upgrade guidance: https://argo-cd.readthedocs.io/en/stable/operator-manual/upgrading/3.2-3.3/#applicationset-crd-exceeds-the-size-limit-for-client-side-apply. If you install the CRDs manually using kubectl make sure to enable server-side apply.
 
 Some users would prefer to install the CRDs _outside_ of the chart. You can disable the CRD installation of this chart by using `--set crds.install=false` when installing the chart.
 
@@ -470,7 +470,7 @@ If you used the value, please migrate like below.
 configs:
   clusterCredentials:
     - mycluster:
-      server: https://mycluster.example.com
+      server: https://mycluster.mjkim134.com
       labels: {}
       annotations: {}
       # ...
@@ -479,7 +479,7 @@ configs:
 configs:
   clusterCredentials:
     mycluster:
-      server: https://mycluster.example.com
+      server: https://mycluster.mjkim134.com
       labels: {}
       annotations: {}
       # ...
@@ -553,7 +553,7 @@ Please review your setup and adjust to new configuration options:
 * additional hostnames and routing can be provided via `extraHosts` configuration section
 * additional TLS secrets can be provided via `extraTls` configuration section
 
-Please refer to [ingress configuration](#ingress-configuration) for examples.
+Please refer to [ingress configuration](#ingress-configuration) for mjkim134s.
 
 ### 5.53.0
 
@@ -677,7 +677,7 @@ server:
       - resources-finalizer.argocd.argoproj.io
       project: guestbook
       source:
-        repoURL: https://github.com/argoproj/argocd-example-apps.git
+        repoURL: https://github.com/argoproj/argocd-mjkim134-apps.git
         targetRevision: HEAD
         path: guestbook
         directory:
@@ -881,7 +881,7 @@ NAME: my-release
 | global.deploymentAnnotations | object | `{}` | Annotations for the all deployed Deployments |
 | global.deploymentLabels | object | `{}` | Labels for the all deployed Deployments |
 | global.deploymentStrategy | object | `{}` | Deployment strategy for the all deployed Deployments |
-| global.domain | string | `"argocd.example.com"` | Default domain used by all components |
+| global.domain | string | `"argocd.mjkim134.com"` | Default domain used by all components |
 | global.dualStack.ipFamilies | list | `[]` | IP families that should be supported and the order in which they should be applied to ClusterIP as well. Can be IPv4 and/or IPv6. |
 | global.dualStack.ipFamilyPolicy | string | `""` | IP family policy to configure dual-stack see [Configure dual-stack](https://kubernetes.io/docs/concepts/services-networking/dual-stack/#services) |
 | global.env | list | `[]` | Environment variables to pass to all deployed Deployments |

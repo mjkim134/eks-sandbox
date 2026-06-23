@@ -1,4 +1,4 @@
-package com.example.eksdemo.api.sample.controller;
+package com.mjkim134.eksdemo.api.sample.controller;
 
 
 import org.slf4j.Logger;

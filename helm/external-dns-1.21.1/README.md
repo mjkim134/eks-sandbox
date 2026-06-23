@@ -67,7 +67,7 @@ Note: When using Gateway API sources in namespaced mode, a cluster-scoped permis
 ### Namespace-only limitations
 
 Not all sources are supported in namespace-only scope, since some sources depend on cluster-wide resources.
-For example: Source `node` isn't supported, since `kind: Node` has scope `Cluster`.
+For mjkim134: Source `node` isn't supported, since `kind: Node` has scope `Cluster`.
 Sources like `istio-virtualservice` only work if all resources like `Gateway` and `VirtualService` are present in the same
 namespace as `external-dns`.
 The annotation `external-dns.alpha.kubernetes.io/endpoints-type: NodeExternalIP` is not supported.
@@ -164,7 +164,7 @@ If `namespaced` is set to `true`, please ensure that `sources` only contains sup
 | service.ipFamilies | list | `[]` | Service IP families (e.g. IPv4 and/or IPv6). |
 | service.ipFamilyPolicy | string | `nil` | Service IP family policy. |
 | service.port | int | `7979` | Service HTTP port. |
-| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. Templates are allowed in both the key and the value. Example: `example.com/annotation/{{ .Values.nameOverride }}: {{ .Values.nameOverride }}` |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account. Templates are allowed in both the key and the value. Example: `mjkim134.com/annotation/{{ .Values.nameOverride }}: {{ .Values.nameOverride }}` |
 | serviceAccount.automountServiceAccountToken | bool | `true` | Set this to `false` to [opt out of API credential automounting](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#opt-out-of-api-credential-automounting) for the `ServiceAccount`. |
 | serviceAccount.create | bool | `true` | If `true`, create a new `ServiceAccount`. |
 | serviceAccount.labels | object | `{}` | Labels to add to the service account. |

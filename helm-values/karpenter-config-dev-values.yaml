@@ -1,0 +1,14 @@
+clusterName: "kimpala-dev"
+env: "dev"
+
+nodePool:
+  capacityTypes:
+    - "spot"
+  instanceTypes:
+    - "t3a.medium"
+    - "t3.medium"
+  expireAfter: "720h"
+  limitCpu: 1000
+
+nodeClass:
+  role: arn:aws:iam::728138073365:role/eks-kimpala-dev-karpenter-node

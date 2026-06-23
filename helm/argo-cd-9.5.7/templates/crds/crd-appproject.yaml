@@ -317,7 +317,7 @@ spec:
                     description:
                       description: Description of the sync that will be applied to
                         the schedule, can be used to add any information such as a
-                        ticket number for example
+                        ticket number for mjkim134
                       type: string
                     duration:
                       description: Duration is the amount of time the sync window

@@ -1,20 +1,22 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: eks-demo-app
+  name: karpenter
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
-    repoURL: https://github.com/example/eks-sandbox.git
+    repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm/eks-demo-app
+    path: helm/karpenter-1.12.0
     helm:
       valueFiles:
-        - kimpala-dev-values.yaml
+        - ../helm-values/karpenter-dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: eks-demo
+    namespace: karpenter
   syncPolicy:
     automated:
       prune: true

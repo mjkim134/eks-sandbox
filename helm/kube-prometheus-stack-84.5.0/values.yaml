@@ -10,7 +10,7 @@ nameOverride: ""
 ##
 namespaceOverride: ""
 
-## Provide a k8s version to auto dashboard import script example: kubeTargetVersionOverride: 1.26.6
+## Provide a k8s version to auto dashboard import script mjkim134: kubeTargetVersionOverride: 1.26.6
 ##
 kubeTargetVersionOverride: ""
 
@@ -595,7 +595,7 @@ alertmanager:
   ## ref: https://helm.sh/docs/developing_charts/#using-the-tpl-function
   ##      https://prometheus.io/docs/alerting/configuration/#tmpl_string
   ##      https://prometheus.io/docs/alerting/notifications/
-  ##      https://prometheus.io/docs/alerting/notification_examples/
+  ##      https://prometheus.io/docs/alerting/notification_mjkim134s/
   tplConfig: false
 
   ## Alertmanager template files to format alerts
@@ -604,11 +604,11 @@ alertmanager:
   ## to change, add other suffixes. If adding other suffixes, be sure to update
   ## config.templates above to include those suffixes.
   ## ref: https://prometheus.io/docs/alerting/notifications/
-  ##      https://prometheus.io/docs/alerting/notification_examples/
+  ##      https://prometheus.io/docs/alerting/notification_mjkim134s/
   ##
   templateFiles: {}
   #
-  ## An example template:
+  ## An mjkim134 template:
   #   template_1.tmpl: |-
   #       {{ define "cluster" }}{{ .ExternalURL | reReplaceAll ".*alertmanager\\.(.*)" "$1" }}{{ end }}
   #
@@ -661,7 +661,7 @@ alertmanager:
     tls: []
     # - secretName: alertmanager-general-tls
     #   hosts:
-    #   - alertmanager.example.com
+    #   - alertmanager.mjkim134.com
 
   # -- BETA: Configure the gateway routes for the chart here.
   # More routes can be added by adding a dictionary key like the 'main' route.
@@ -684,7 +684,7 @@ alertmanager:
       labels: {}
 
       hostnames: []
-      # - my-filter.example.com
+      # - my-filter.mjkim134.com
       parentRefs: []
       # - name: acme-gw
 
@@ -891,14 +891,14 @@ alertmanager:
     ##
     proxyUrl: ""
 
-    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for mjkim134 if using istio mTLS.
     scheme: ""
 
     ## enableHttp2: Whether to enable HTTP2.
     ## See https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#endpoint
     enableHttp2: true
 
-    ## tlsConfig: TLS configuration to use when scraping the endpoint. For example if using istio mTLS.
+    ## tlsConfig: TLS configuration to use when scraping the endpoint. For mjkim134 if using istio mTLS.
     ## Of type: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#tlsconfig
     tlsConfig: {}
 
@@ -992,32 +992,32 @@ alertmanager:
     ##
     alertmanagerConfigSelector: {}
     ## Example which selects all alertmanagerConfig resources
-    ## with label "alertconfig" with values any of "example-config" or "example-config-2"
+    ## with label "alertconfig" with values any of "mjkim134-config" or "mjkim134-config-2"
     # alertmanagerConfigSelector:
     #   matchExpressions:
     #     - key: alertconfig
     #       operator: In
     #       values:
-    #         - example-config
-    #         - example-config-2
+    #         - mjkim134-config
+    #         - mjkim134-config-2
     #
-    ## Example which selects all alertmanagerConfig resources with label "role" set to "example-config"
+    ## Example which selects all alertmanagerConfig resources with label "role" set to "mjkim134-config"
     # alertmanagerConfigSelector:
     #   matchLabels:
-    #     role: example-config
+    #     role: mjkim134-config
 
     ## Namespaces to be selected for AlertmanagerConfig discovery. If nil, only check own namespace.
     ##
     alertmanagerConfigNamespaceSelector: {}
     ## Example which selects all namespaces
-    ## with label "alertmanagerconfig" with values any of "example-namespace" or "example-namespace-2"
+    ## with label "alertmanagerconfig" with values any of "mjkim134-namespace" or "mjkim134-namespace-2"
     # alertmanagerConfigNamespaceSelector:
     #   matchExpressions:
     #     - key: alertmanagerconfig
     #       operator: In
     #       values:
-    #         - example-namespace
-    #         - example-namespace-2
+    #         - mjkim134-namespace
+    #         - mjkim134-namespace-2
 
     ## Example which selects all namespaces with label "alertmanagerconfig" set to "enabled"
     # alertmanagerConfigNamespaceSelector:
@@ -1077,14 +1077,14 @@ alertmanager:
     externalUrl:
 
     ## The route prefix Alertmanager registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true,
-    ## but the server serves requests under a different route prefix. For example for use with kubectl proxy.
+    ## but the server serves requests under a different route prefix. For mjkim134 for use with kubectl proxy.
     ##
     routePrefix: /
 
-    ## scheme: HTTP scheme to use. Can be used with `tlsConfig` for example if using istio mTLS.
+    ## scheme: HTTP scheme to use. Can be used with `tlsConfig` for mjkim134 if using istio mTLS.
     scheme: ""
 
-    ## tlsConfig: TLS configuration to use when connect to the endpoint. For example if using istio mTLS.
+    ## tlsConfig: TLS configuration to use when connect to the endpoint. For mjkim134 if using istio mTLS.
     ## Of type: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#tlsconfig
     tlsConfig: {}
 
@@ -1112,7 +1112,7 @@ alertmanager:
     podAntiAffinity: "soft"
 
     ## If anti-affinity is enabled sets the topologyKey to use for anti-affinity.
-    ## This can be changed to, for example, failure-domain.beta.kubernetes.io/zone
+    ## This can be changed to, for mjkim134, failure-domain.beta.kubernetes.io/zone
     ##
     podAntiAffinityTopologyKey: kubernetes.io/hostname
 
@@ -1275,7 +1275,7 @@ alertmanager:
     additionalConfigString: ""
 
   ## ExtraSecret can be used to store various data in an extra secret
-  ## (use it for example to store hashed basic auth credentials)
+  ## (use it for mjkim134 to store hashed basic auth credentials)
   extraSecret:
     ## if not set, name will be auto generated
     # name: ""
@@ -1428,7 +1428,7 @@ grafana:
     tls: []
     # - secretName: grafana-general-tls
     #   hosts:
-    #   - grafana.example.com
+    #   - grafana.mjkim134.com
 
   # # To make Grafana persistent (Using Statefulset)
   # #
@@ -1530,7 +1530,7 @@ grafana:
   #   readOnly: true
 
   deleteDatasources: []
-  # - name: example-datasource
+  # - name: mjkim134-datasource
   #   orgId: 1
 
   ## Configure additional grafana datasources (passed through tpl)
@@ -1556,7 +1556,7 @@ grafana:
 
   # Flag to mark provisioned data sources for deletion if they are no longer configured.
   # It takes no effect if data sources are already listed in the deleteDatasources section.
-  # ref: https://grafana.com/docs/grafana/latest/administration/provisioning/#example-data-source-configuration-file
+  # ref: https://grafana.com/docs/grafana/latest/administration/provisioning/#mjkim134-data-source-configuration-file
   prune: false
 
   ## Passed to grafana subchart and used by servicemonitor below
@@ -2260,7 +2260,7 @@ kubeEtcd:
     #   component: etcd
 
   ## Configure secure access to the etcd cluster by loading a secret into prometheus and
-  ## specifying security configuration below. For example, with a secret named etcd-client-cert
+  ## specifying security configuration below. For mjkim134, with a secret named etcd-client-cert
   ##
   ## serviceMonitor:
   ##   scheme: https
@@ -2971,7 +2971,7 @@ prometheusOperator:
         # nameservers:
         #   - 1.2.3.4
         # searches:
-        #   - ns1.svc.cluster-domain.example
+        #   - ns1.svc.cluster-domain.mjkim134
         #   - my.dns.search.suffix
         # options:
         #   - name: ndots
@@ -3334,7 +3334,7 @@ prometheusOperator:
     # nameservers:
     #   - 1.2.3.4
     # searches:
-    #   - ns1.svc.cluster-domain.example
+    #   - ns1.svc.cluster-domain.mjkim134
     #   - my.dns.search.suffix
     # options:
     #   - name: ndots
@@ -3583,10 +3583,10 @@ prometheus:
     ##
     additionalLabels: {}
 
-    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for mjkim134 if using istio mTLS.
     scheme: ""
 
-    ## tlsConfig: TLS configuration to use when scraping the endpoint. For example if using istio mTLS.
+    ## tlsConfig: TLS configuration to use when scraping the endpoint. For mjkim134 if using istio mTLS.
     ## Of type: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#tlsconfig
     tlsConfig: {}
 
@@ -3824,7 +3824,7 @@ prometheus:
     #
 
   ## ExtraSecret can be used to store various data in an extra secret
-  ## (use it for example to store hashed basic auth credentials)
+  ## (use it for mjkim134 to store hashed basic auth credentials)
   extraSecret:
     ## if not set, name will be auto generated
     # name: ""
@@ -3867,7 +3867,7 @@ prometheus:
     tls: []
       # - secretName: prometheus-general-tls
       #   hosts:
-      #     - prometheus.example.com
+      #     - prometheus.mjkim134.com
 
   # -- BETA: Configure the gateway routes for the chart here.
   # More routes can be added by adding a dictionary key like the 'main' route.
@@ -3890,7 +3890,7 @@ prometheus:
       labels: {}
 
       hostnames: []
-      # - my-filter.example.com
+      # - my-filter.mjkim134.com
       parentRefs: []
       # - name: acme-gw
 
@@ -3993,10 +3993,10 @@ prometheus:
     ##
     labelValueLengthLimit: 0
 
-    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for mjkim134 if using istio mTLS.
     scheme: ""
 
-    ## tlsConfig: TLS configuration to use when scraping the endpoint. For example if using istio mTLS.
+    ## tlsConfig: TLS configuration to use when scraping the endpoint. For mjkim134 if using istio mTLS.
     ## Of type: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#tlsconfig
     tlsConfig: {}
 
@@ -4270,19 +4270,19 @@ prometheus:
     ##
     ruleSelector: {}
     ## Example which select all PrometheusRules resources
-    ## with label "prometheus" with values any of "example-rules" or "example-rules-2"
+    ## with label "prometheus" with values any of "mjkim134-rules" or "mjkim134-rules-2"
     # ruleSelector:
     #   matchExpressions:
     #     - key: prometheus
     #       operator: In
     #       values:
-    #         - example-rules
-    #         - example-rules-2
+    #         - mjkim134-rules
+    #         - mjkim134-rules-2
     #
-    ## Example which select all PrometheusRules resources with label "role" set to "example-rules"
+    ## Example which select all PrometheusRules resources with label "role" set to "mjkim134-rules"
     # ruleSelector:
     #   matchLabels:
-    #     role: example-rules
+    #     role: mjkim134-rules
 
     ## If true, a nil or {} value for prometheus.prometheusSpec.serviceMonitorSelector will cause the
     ## prometheus resource to be created with selectors based on values in the helm deployment,
@@ -4440,7 +4440,7 @@ prometheus:
     podAntiAffinity: "soft"
 
     ## If anti-affinity is enabled sets the topologyKey to use for anti-affinity.
-    ## This can be changed to, for example, failure-domain.beta.kubernetes.io/zone
+    ## This can be changed to, for mjkim134, failure-domain.beta.kubernetes.io/zone
     ##
     podAntiAffinityTopologyKey: kubernetes.io/hostname
 
@@ -4516,7 +4516,7 @@ prometheus:
     ## scrape configs are going to break Prometheus after the upgrade.
     ## AdditionalScrapeConfigs can be defined as a list or as a templated string.
     ##
-    ## The scrape configuration example below will find master nodes, provided they have the name .*mst.*, relabel the
+    ## The scrape configuration mjkim134 below will find master nodes, provided they have the name .*mst.*, relabel the
     ## port to 2379 and allow etcd scraping provided it is running on all Kubernetes master nodes
     ##
     additionalScrapeConfigs: []
@@ -4549,7 +4549,7 @@ prometheus:
     #     action: labeldrop
     #
     ## If scrape config contains a repetitive section, you may want to use a template.
-    ## In the following example, you can see how to define `gce_sd_configs` for multiple zones
+    ## In the following mjkim134, you can see how to define `gce_sd_configs` for multiple zones
     # additionalScrapeConfigs: |
     #  - job_name: "node-exporter"
     #    gce_sd_configs:
@@ -4883,13 +4883,13 @@ prometheus:
     ##
     # selector: {}
       ## Example which selects all services to be monitored
-      ## with label "monitoredby" with values any of "example-service-1" or "example-service-2"
+      ## with label "monitoredby" with values any of "mjkim134-service-1" or "mjkim134-service-2"
       # matchExpressions:
       #   - key: "monitoredby"
       #     operator: In
       #     values:
-      #       - example-service-1
-      #       - example-service-2
+      #       - mjkim134-service-1
+      #       - mjkim134-service-2
 
       ## label selector for services
       ##
@@ -5006,13 +5006,13 @@ prometheus:
     ##
     # selector: {}
       ## Example which selects all Pods to be monitored
-      ## with label "monitoredby" with values any of "example-pod-1" or "example-pod-2"
+      ## with label "monitoredby" with values any of "mjkim134-pod-1" or "mjkim134-pod-2"
       # matchExpressions:
       #   - key: "monitoredby"
       #     operator: In
       #     values:
-      #       - example-pod-1
-      #       - example-pod-2
+      #       - mjkim134-pod-1
+      #       - mjkim134-pod-2
 
       ## label selector for pods
       ##
@@ -5112,7 +5112,7 @@ thanosRuler:
     tls: []
     # - secretName: thanosruler-general-tls
     #   hosts:
-    #   - thanosruler.example.com
+    #   - thanosruler.mjkim134.com
 
   # -- BETA: Configure the gateway routes for the chart here.
   # More routes can be added by adding a dictionary key like the 'main' route.
@@ -5135,7 +5135,7 @@ thanosRuler:
       labels: {}
 
       hostnames: []
-      # - my-filter.example.com
+      # - my-filter.mjkim134.com
       parentRefs: []
       # - name: acme-gw
 
@@ -5243,10 +5243,10 @@ thanosRuler:
     ##
     proxyUrl: ""
 
-    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for example if using istio mTLS.
+    ## scheme: HTTP scheme to use for scraping. Can be used with `tlsConfig` for mjkim134 if using istio mTLS.
     scheme: ""
 
-    ## tlsConfig: TLS configuration to use when scraping the endpoint. For example if using istio mTLS.
+    ## tlsConfig: TLS configuration to use when scraping the endpoint. For mjkim134 if using istio mTLS.
     ## Of type: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api-reference/api.md#tlsconfig
     tlsConfig: {}
 
@@ -5314,19 +5314,19 @@ thanosRuler:
     ##
     ruleSelector: {}
     ## Example which select all PrometheusRules resources
-    ## with label "prometheus" with values any of "example-rules" or "example-rules-2"
+    ## with label "prometheus" with values any of "mjkim134-rules" or "mjkim134-rules-2"
     # ruleSelector:
     #   matchExpressions:
     #     - key: prometheus
     #       operator: In
     #       values:
-    #         - example-rules
-    #         - example-rules-2
+    #         - mjkim134-rules
+    #         - mjkim134-rules-2
     #
-    ## Example which select all PrometheusRules resources with label "role" set to "example-rules"
+    ## Example which select all PrometheusRules resources with label "role" set to "mjkim134-rules"
     # ruleSelector:
     #   matchLabels:
-    #     role: example-rules
+    #     role: mjkim134-rules
 
     ## Define Log Format
     # Use logfmt (default) or json logging
@@ -5396,7 +5396,7 @@ thanosRuler:
     externalPrefixNilUsesHelmValues: true
 
     ## The route prefix ThanosRuler registers HTTP handlers for. This is useful, if using ExternalURL and a proxy is rewriting HTTP routes of a request, and the actual ExternalURL is still true,
-    ## but the server serves requests under a different route prefix. For example for use with kubectl proxy.
+    ## but the server serves requests under a different route prefix. For mjkim134 for use with kubectl proxy.
     ##
     routePrefix: /
 
@@ -5484,7 +5484,7 @@ thanosRuler:
     podAntiAffinity: "soft"
 
     ## If anti-affinity is enabled sets the topologyKey to use for anti-affinity.
-    ## This can be changed to, for example, failure-domain.beta.kubernetes.io/zone
+    ## This can be changed to, for mjkim134, failure-domain.beta.kubernetes.io/zone
     ##
     podAntiAffinityTopologyKey: kubernetes.io/hostname
 
@@ -5592,7 +5592,7 @@ thanosRuler:
     additionalConfigString: ""
 
   ## ExtraSecret can be used to store various data in an extra secret
-  ## (use it for example to store hashed basic auth credentials)
+  ## (use it for mjkim134 to store hashed basic auth credentials)
   extraSecret:
     ## if not set, name will be auto generated
     # name: ""
