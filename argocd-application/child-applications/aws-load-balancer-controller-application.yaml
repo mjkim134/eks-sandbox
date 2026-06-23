@@ -13,7 +13,7 @@ spec:
     path: helm/aws-load-balancer-controller-3.2.2
     helm:
       valueFiles:
-        - ../helm-values/aws-load-balancer-controller-dev-values.yaml
+        - ../../helm-values/aws-load-balancer-controller-dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

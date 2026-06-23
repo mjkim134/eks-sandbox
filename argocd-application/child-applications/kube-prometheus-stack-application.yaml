@@ -13,7 +13,7 @@ spec:
     path: helm/kube-prometheus-stack-84.5.0
     helm:
       valueFiles:
-        - ../helm-values/kube-prometheus-stack-dev-values.yaml
+        - ../../helm-values/kube-prometheus-stack-dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

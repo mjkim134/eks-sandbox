@@ -13,7 +13,7 @@ spec:
     path: helm/external-dns-1.21.1
     helm:
       valueFiles:
-        - ../helm-values/external-dns-dev-values.yaml
+        - ../../helm-values/external-dns-dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

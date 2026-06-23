@@ -13,7 +13,7 @@ spec:
     path: helm/karpenter-config
     helm:
       valueFiles:
-        - ../helm-values/karpenter-config-dev-values.yaml
+        - ../../helm-values/karpenter-config-dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: karpenter

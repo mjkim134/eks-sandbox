@@ -13,7 +13,7 @@ spec:
     path: helm/eks-demo-app
     helm:
       valueFiles:
-        - ../helm-values/eks-demo-app-dev-values.yaml
+        - ../../helm-values/eks-demo-app-dev-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: eks-demo
