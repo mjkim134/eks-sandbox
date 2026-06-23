@@ -1,0 +1,13 @@
+clusterName: "default-cluster"
+env: "dev"
+
+nodePool:
+  capacityTypes:
+    - "spot"
+  instanceTypes:
+    - "t3.medium"
+  expireAfter: "720h"
+  limitCpu: 1000
+
+nodeClass:
+  role: "karpenter-node-iam-role-arn"

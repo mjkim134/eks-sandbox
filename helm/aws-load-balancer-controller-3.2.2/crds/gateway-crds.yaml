@@ -1264,13 +1264,13 @@ spec:
                   group:
                     default: ""
                     description: |-
-                      Group is the group of the referent. For example, "gateway.networking.k8s.io".
+                      Group is the group of the referent. For mjkim134, "gateway.networking.k8s.io".
                       When unspecified or empty string, core API group is inferred.
                     type: string
                   kind:
                     default: Service
                     description: |-
-                      Kind is the Kubernetes resource kind of the referent. For example
+                      Kind is the Kubernetes resource kind of the referent. For mjkim134
                       "Service".
 
                       Defaults to "Service" when not specified.

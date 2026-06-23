@@ -98,7 +98,7 @@ If you are setting `serviceMonitor.enabled: true` you need to have installed the
 ## Installing the Chart
 **Note**: You need to uninstall aws-alb-ingress-controller. Please refer to the [upgrade](#Upgrade) section below before you proceed.
 
-**Note**: Starting chart version 1.4.1, you need to explicitly set `clusterSecretsPermissions.allowAllSecrets` to true to grant the controller permission to access all secrets for OIDC feature. We recommend configuring access to individual secrets resource separately [[link](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/examples/secrets_access/)].
+**Note**: Starting chart version 1.4.1, you need to explicitly set `clusterSecretsPermissions.allowAllSecrets` to true to grant the controller permission to access all secrets for OIDC feature. We recommend configuring access to individual secrets resource separately [[link](https://kubernetes-sigs.github.io/aws-load-balancer-controller/v2.4/mjkim134s/secrets_access/)].
 
 **Note**: To ensure compatibility, we recommend installing the AWS Load Balancer controller image version with its compatible Helm chart version. Use the ```helm search repo eks/aws-load-balancer-controller --versions``` command to find the compatible versions.
 
@@ -142,7 +142,7 @@ $ kubectl describe deployment  -n kube-system  alb-ingress-controller |grep Imag
 # You can delete the deployment now
 $ kubectl delete deployment -n kube-system alb-ingress-controller
 # In this case, the version is v1.1.8, the rbac roles can be removed as follows
-$ kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/examples/rbac-role.yaml
+$ kubectl delete -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.8/docs/mjkim134s/rbac-role.yaml
 ```
 ### Helm installation
 If you had installed the incubator/aws-alb-ingress-controller Helm chart, uninstall as follows

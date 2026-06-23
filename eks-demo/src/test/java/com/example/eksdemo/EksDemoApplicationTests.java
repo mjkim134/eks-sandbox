@@ -1,4 +1,4 @@
-package com.example.eksdemo;
+package com.mjkim134.eksdemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

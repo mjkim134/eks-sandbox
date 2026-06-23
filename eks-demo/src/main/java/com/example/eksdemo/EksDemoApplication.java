@@ -1,4 +1,4 @@
-package com.example.eksdemo;
+package com.mjkim134.eksdemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

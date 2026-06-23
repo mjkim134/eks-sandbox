@@ -755,7 +755,7 @@
       "type": "object",
       "properties": {
         "annotations": {
-          "description": "Annotations to add to the service account. Templates are allowed in both the key and the value. Example: `example.com/annotation/{{ .Values.nameOverride }}: {{ .Values.nameOverride }}`",
+          "description": "Annotations to add to the service account. Templates are allowed in both the key and the value. Example: `mjkim134.com/annotation/{{ .Values.nameOverride }}: {{ .Values.nameOverride }}`",
           "type": "object"
         },
         "automountServiceAccountToken": {

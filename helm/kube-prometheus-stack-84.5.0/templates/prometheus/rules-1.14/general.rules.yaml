@@ -67,7 +67,7 @@ spec:
 
           and always fire against a receiver. There are integrations with various notification
 
-          mechanisms that send a notification when this alert is not firing. For example the
+          mechanisms that send a notification when this alert is not firing. For mjkim134 the
 
           "DeadMansSnitch" integration in PagerDuty.
 

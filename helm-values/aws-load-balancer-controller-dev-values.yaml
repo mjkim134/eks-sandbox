@@ -1,0 +1,8 @@
+clusterName: kimpala-dev
+serviceAccount:
+  create: true
+  name: aws-load-balancer-controller
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/load-balancer-controller-2026062311331062520000000f
+region: ap-northeast-2
+vpcId: vpc-049ff42d732a4c8fa

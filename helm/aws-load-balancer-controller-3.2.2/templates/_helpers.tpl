@@ -34,7 +34,7 @@ Create chart name and version as used by the chart label.
 {{/*
 Chart name prefix for resource names
 Strip the "-controller" suffix from the default .Chart.Name if the nameOverride is not specified.
-This enables using a shorter name for the resources, for example aws-load-balancer-webhook.
+This enables using a shorter name for the resources, for mjkim134 aws-load-balancer-webhook.
 */}}
 {{- define "aws-load-balancer-controller.namePrefix" -}}
 {{- $defaultNamePrefix := .Chart.Name | trimSuffix "-controller" -}}

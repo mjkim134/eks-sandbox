@@ -43,7 +43,7 @@ crds:
 global:
   # -- Default domain used by all components
   ## Used for ingresses, certificates, SSO, notifications, etc.
-  domain: argocd.example.com
+  domain: argocd.mjkim134.com
 
   # -- Runtime class name for all components
   runtimeClassName: ""
@@ -227,7 +227,7 @@ configs:
     # Dex configuration
     # dex.config: |
     #   connectors:
-    #     # GitHub example
+    #     # GitHub mjkim134
     #     - type: github
     #       id: github
     #       name: GitHub
@@ -248,7 +248,7 @@ configs:
     #     useWorkloadIdentity: false
 
     # Some OIDC providers require a separate clientID for different callback URLs.
-    # For example, if configuring Argo CD with self-hosted Dex, you will need a separate client ID
+    # For mjkim134, if configuring Argo CD with self-hosted Dex, you will need a separate client ID
     # for the 'localhost' (CLI) client to Dex. This field is optional. If omitted, the CLI will
     # use the same clientID as the Argo CD server
     #   cliClientID: vvvvwwwwxxxxyyyyzzzz
@@ -280,7 +280,7 @@ configs:
     # PKCE authentication flow processes authorization flow from browser only - default false
     # uses the clientID
     # make sure the Identity Provider (IdP) is public and doesn't need clientSecret
-    # make sure the Identity Provider (IdP) has this redirect URI registered: https://argocd.example.com/pkce/verify
+    # make sure the Identity Provider (IdP) has this redirect URI registered: https://argocd.mjkim134.com/pkce/verify
     #   enablePKCEAuthentication: true
 
     # Extension Configuration
@@ -531,7 +531,7 @@ configs:
     # -- TLS certificates for Git repositories
     # @default -- `{}` (See [values.yaml])
     certificates: {}
-      # server.example.com: |
+      # server.mjkim134.com: |
       #   -----BEGIN CERTIFICATE-----
       #   ...
       #   -----END CERTIFICATE-----
@@ -590,7 +590,7 @@ configs:
   ## - https://argo-cd.readthedocs.io/en/stable/user-guide/projects/#project-scoped-repositories-and-clusters
   clusterCredentials: {}
     # mycluster:
-    #   server: https://mycluster.example.com
+    #   server: https://mycluster.mjkim134.com
     #   labels: {}
     #   annotations: {}
     #   config:
@@ -599,7 +599,7 @@ configs:
     #       insecure: false
     #       caData: "<base64 encoded certificate>"
     # mycluster2:
-    #   server: https://mycluster2.example.com
+    #   server: https://mycluster2.mjkim134.com
     #   labels: {}
     #   annotations: {}
     #   namespaces: namespace1,namespace2
@@ -610,7 +610,7 @@ configs:
     #       insecure: false
     #       caData: "<base64 encoded certificate>"
     # mycluster3-project-scoped:
-    #   server: https://mycluster3.example.com
+    #   server: https://mycluster3.mjkim134.com
     #   labels: {}
     #   annotations: {}
     #   project: my-project1
@@ -621,7 +621,7 @@ configs:
     #       caData: "<base64 encoded certificate>"
     # mycluster4-sharded:
     #   shard: 1
-    #   server: https://mycluster4.example.com
+    #   server: https://mycluster4.mjkim134.com
     #   labels: {}
     #   annotations: {}
     #   config:
@@ -637,7 +637,7 @@ configs:
     #   url: https://github.com/argoproj
     #   githubAppID: 1
     #   githubAppInstallationID: 2
-    #   githubAppEnterpriseBaseUrl: https://ghe.example.com/api/v3
+    #   githubAppEnterpriseBaseUrl: https://ghe.mjkim134.com/api/v3
     #   githubAppPrivateKey: |
     #     -----BEGIN OPENSSH PRIVATE KEY-----
     #     ...
@@ -658,7 +658,7 @@ configs:
 
   # -- Repositories list to be used by applications
   ## Creates a secret for each key/value specified below to create repositories
-  ## Note: the last example in the list would use a repository credential template, configured under "configs.credentialTemplates".
+  ## Note: the last mjkim134 in the list would use a repository credential template, configured under "configs.credentialTemplates".
   repositories: {}
     # istio-helm-repo:
     #   url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
@@ -817,7 +817,7 @@ controller:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for application controller container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -1194,7 +1194,7 @@ dex:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for Dex server container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -1493,7 +1493,7 @@ redis:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for Redis container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -2065,7 +2065,7 @@ server:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for Argo CD server container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -2526,7 +2526,7 @@ server:
     # -- The list of additional hostnames to be covered by ingress record
     # @default -- `[]` (See [values.yaml])
     extraHosts: []
-      # - name: argocd.example.com
+      # - name: argocd.mjkim134.com
       #   path: /
 
     # -- Additional ingress paths
@@ -2559,7 +2559,7 @@ server:
     # @default -- `[]` (See [values.yaml])
     extraTls: []
       # - hosts:
-      #   - argocd.example.com
+      #   - argocd.mjkim134.com
       #   secretName: your-certificate-name
 
     # AWS specific options for Application Load Balancer
@@ -2607,7 +2607,7 @@ server:
         create: true
         # -- Additional domains for ManagedCertificate resource
         extraDomains: []
-          # - argocd.example.com
+          # - argocd.mjkim134.com
 
   # Dedicated gRPC ingress for ingress controllers that supports only single backend protocol per Ingress resource
   # Ref: https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#option-2-multiple-ingress-objects-and-hosts
@@ -2638,7 +2638,7 @@ server:
     # -- The list of additional hostnames to be covered by ingress record
     # @default -- `[]` (See [values.yaml])
     extraHosts: []
-      # - name: grpc.argocd.example.com
+      # - name: grpc.argocd.mjkim134.com
       #   path: /
 
     # -- Additional ingress paths for dedicated [gRPC-ingress]
@@ -2672,7 +2672,7 @@ server:
     extraTls: []
       # - secretName: your-certificate-name
       #   hosts:
-      #     - argocd.example.com
+      #     - argocd.mjkim134.com
 
   # Create a OpenShift Route with SSL passthrough for UI and CLI
   # Consider setting 'hostname' e.g. https://argocd.apps-crc.testing/ using your Default Ingress Controller Domain
@@ -2706,13 +2706,13 @@ server:
     ## Must reference an existing Gateway
     # @default -- `[]` (See [values.yaml])
     parentRefs: []
-      # - name: example-gateway
-      #   namespace: example-gateway-namespace
+      # - name: mjkim134-gateway
+      #   namespace: mjkim134-gateway-namespace
       #   sectionName: https
     # -- List of hostnames for the HTTPRoute
     # @default -- `[]` (See [values.yaml])
     hostnames: []
-      # - argocd.example.com
+      # - argocd.mjkim134.com
     # -- HTTPRoute rules configuration
     # @default -- `[]` (See [values.yaml])
     rules:
@@ -2745,13 +2745,13 @@ server:
     ## Must reference an existing Gateway
     # @default -- `[]` (See [values.yaml])
     parentRefs: []
-      # - name: example-gateway
-      #   namespace: example-gateway-namespace
+      # - name: mjkim134-gateway
+      #   namespace: mjkim134-gateway-namespace
       #   sectionName: grpc
     # -- List of hostnames for the GRPCRoute
     # @default -- `[]` (See [values.yaml])
     hostnames: []
-      # - grpc.argocd.example.com
+      # - grpc.argocd.mjkim134.com
     # -- GRPCRoute rules configuration
     # @default -- `[]` (See [values.yaml])
     rules:
@@ -2788,7 +2788,7 @@ server:
     validation: {}
       # hostname: argocd-server.argocd.svc.cluster.local
       # caCertificateRefs:
-      #   - name: example-ca-cert
+      #   - name: mjkim134-ca-cert
       #     group: ""
       #     kind: ConfigMap
       # wellKnownCACertificates: System
@@ -2879,7 +2879,7 @@ repoServer:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for repo server container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -3295,7 +3295,7 @@ applicationSet:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for ApplicationSet controller container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -3613,7 +3613,7 @@ applicationSet:
     # -- The list of additional hostnames to be covered by ingress record
     # @default -- `[]` (See [values.yaml])
     extraHosts: []
-      # - name: argocd.example.com
+      # - name: argocd.mjkim134.com
       #   path: /
 
     # -- Additional ingress paths
@@ -3646,7 +3646,7 @@ applicationSet:
     extraTls: []
       # - secretName: argocd-applicationset-tls
       #   hosts:
-      #     - argocd-applicationset.example.com
+      #     - argocd-applicationset.mjkim134.com
 
   ## Gateway API HTTPRoute for the Git Generator webhook
   ## Ref: https://argocd-applicationset.readthedocs.io/en/master/Generators-Git/#webhook-configuration)
@@ -3665,13 +3665,13 @@ applicationSet:
     ## Must reference an existing Gateway
     # @default -- `[]` (See [values.yaml])
     parentRefs: []
-      # - name: example-gateway
-      #   namespace: example-gateway-namespace
+      # - name: mjkim134-gateway
+      #   namespace: mjkim134-gateway-namespace
       #   sectionName: https
     # -- List of hostnames for the HTTPRoute
     # @default -- `[]` (See [values.yaml])
     hostnames: []
-      # - argocd.example.com
+      # - argocd.mjkim134.com
     # -- HTTPRoute rules configuration
     # @default -- `[]` (See [values.yaml])
     rules:
@@ -3742,7 +3742,7 @@ notifications:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for notifications controller container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:
@@ -3825,7 +3825,7 @@ notifications:
     labels: {}
 
     # -- Generic key:value pairs to be inserted into the secret
-    ## Can be used for templates, notification services etc. Some examples given below.
+    ## Can be used for templates, notification services etc. Some mjkim134s given below.
     ## For more information: https://argo-cd.readthedocs.io/en/stable/operator-manual/notifications/services/overview/
     items: {}
       # slack-token:
@@ -4502,7 +4502,7 @@ commitServer:
     ## Note: Recreate update mode requires more than one replica unless the min-replicas VPA controller flag is overridden
     updateMode: Initial
     # -- Controls how VPA computes the recommended resources for commit server container
-    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/examples/hamster.yaml
+    ## Ref: https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/mjkim134s/hamster.yaml
     containerPolicy: {}
       # controlledResources: ["cpu", "memory"]
       # minAllowed:

@@ -171,7 +171,7 @@ ingressClassParams:
 # If specified as true, the IngressClass resource will be created.
 createIngressClassResource: true
 
-# The AWS region for the kubernetes cluster. Set to use KIAM or kube2iam for example.
+# The AWS region for the kubernetes cluster. Set to use KIAM or kube2iam for mjkim134.
 region:
 
 # The VPC ID for the Kubernetes cluster. Set this manually when your pods are unable to use the metadata service to determine this automatically
@@ -186,7 +186,7 @@ vpcTags: {}
 awsApiEndpoints:
 
 # awsApiThrottle specifies custom AWS API throttle settings (serviceID1:operationRegex1=rate:burst,serviceID2:operationRegex2=rate:burst)
-# example: --set awsApiThrottle="{Elastic Load Balancing v2:RegisterTargets|DeregisterTargets=4:20,Elastic Load Balancing v2:.*=10:40}"
+# mjkim134: --set awsApiThrottle="{Elastic Load Balancing v2:RegisterTargets|DeregisterTargets=4:20,Elastic Load Balancing v2:.*=10:40}"
 awsApiThrottle:
 
 # Maximum retries for AWS APIs (default 10)
@@ -347,7 +347,7 @@ env:
 
 # Specifies if aws-load-balancer-controller should be started in hostNetwork mode.
 # This is required if using a custom CNI where the managed control plane nodes are unable to initiate
-# network connections to the pods, for example using Calico CNI plugin on EKS. This is not required or
+# network connections to the pods, for mjkim134 using Calico CNI plugin on EKS. This is not required or
 # recommended if using the Amazon VPC CNI plugin.
 hostNetwork: false
 
@@ -364,7 +364,7 @@ extraVolumeMounts:
   #   mountPath: /var/run/secrets/eks.amazonaws.com/serviceaccount
   #   readOnly: true
 
-# extraVolumes for the extraVolumeMounts. Useful to mount a projected service account token for example.
+# extraVolumes for the extraVolumeMounts. Useful to mount a projected service account token for mjkim134.
 extraVolumes:
   # - name: aws-iam-token
   #   projected:
