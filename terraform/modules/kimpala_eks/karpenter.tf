@@ -118,3 +118,9 @@ resource "aws_iam_instance_profile" "karpenter_node" {
   name = "karpenter-node-instance-profile"
   role = aws_iam_role.karpenter_node.name
 }
+
+resource "aws_eks_access_entry" "karpenter_node" {
+  cluster_name  = var.cluster_name
+  principal_arn = aws_iam_role.karpenter_node.arn
+  type          = "EC2_LINUX"
+}
