@@ -10,13 +10,6 @@ module "eks" {
   enable_kms_key_rotation      = false
 
   authentication_mode                      = "API"
-
-  access_entries = {
-    karpenter = {
-      cidr_blocks = [var.my_ip_cidr]
-      type = "EC2_LINUX"
-    }
-  }
   enable_irsa                              = true
   enable_cluster_creator_admin_permissions = true
   endpoint_private_access                  = true
