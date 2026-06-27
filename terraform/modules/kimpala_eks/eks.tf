@@ -92,6 +92,7 @@ module "eks" {
           ebs = {
             volume_type = "gp3"
             encrypted   = true
+            delete_on_termination = true
           }
         }
       }
