@@ -1,4 +1,5 @@
 clusterName: "kimpala-dev"
+nodeName: "kimpala-dev-karpenter-node"
 env: "dev"
 
 nodePool:

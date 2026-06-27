@@ -19,6 +19,7 @@ spec:
         encrypted: true
         deleteOnTermination: true
   tags:
+      Name: {{ .Values.nodeName }}
       Service: "Test"
       Organization: "tech"
       Team: "tech/devops"
