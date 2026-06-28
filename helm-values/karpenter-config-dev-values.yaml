@@ -1,8 +1,13 @@
+metadata:
+  name: kimpala-dev
+
 clusterName: "kimpala-dev"
 nodeName: "kimpala-dev-karpenter-node"
 env: "dev"
 
 nodePool:
+  arch:
+    - "amd64"
   capacityTypes:
     - "spot"
   instanceTypes:
@@ -10,6 +15,7 @@ nodePool:
     - "t3.medium"
   expireAfter: "720h"
   limitCpu: 1000
+  limitMemory: 1000Gi
 
 nodeClass:
   role: arn:aws:iam::728138073365:role/eks-kimpala-dev-karpenter-node

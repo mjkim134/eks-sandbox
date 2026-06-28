@@ -51,6 +51,3 @@ readinessProbe:
   httpGet:
     path: /actuator/health
     port: 8080
-
-nodeSelector:
-  karpenter.sh/nodepool: default

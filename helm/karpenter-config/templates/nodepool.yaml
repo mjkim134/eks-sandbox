@@ -1,14 +1,15 @@
 apiVersion: karpenter.sh/v1
 kind: NodePool
 metadata:
-  name: default
+  name: {{ .Values.metadata.name }}
 spec:
   template:
     spec:
       requirements:
         - key: kubernetes.io/arch
           operator: In
-          values: ["amd64"]
+          values:
+{{- toYaml .Values.nodePool.arch | nindent 12 }}
         - key: kubernetes.io/os
           operator: In
           values: ["linux"]
@@ -27,6 +28,7 @@ spec:
       expireAfter: {{ .Values.nodePool.expireAfter}}
   limits:
     cpu: {{ .Values.nodePool.limitCpu }}
+    memory: {{ .Values.nodePool.limitMemory}}
   disruption:
     consolidationPolicy: WhenEmptyOrUnderutilized
     consolidateAfter: 1m
