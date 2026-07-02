@@ -1,6 +1,6 @@
 region = "ap-northeast-2"
 
-cluster_name    = "minist-prod"
+cluster_name    = "eks-sandbox-prod"
 cluster_version = "1.35"
 instance_types  = ["m7i.large"]
 capacity_type   = "on-demand"

@@ -10,14 +10,14 @@ terraform {
 
   backend "s3" {
     bucket       = "eks-sandbox-apne2-tfstate"
-    key          = "envs/prod/vpc/terraform.tfstate"
+    key          = "envs/prod/acm/terraform.tfstate"
     region       = "ap-northeast-2"
     use_lockfile = true
   }
 }
 
 provider "aws" {
-  region = var.region
+  region = "ap-northeast-2"
 
   default_tags {
     tags = {

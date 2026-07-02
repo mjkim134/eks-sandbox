@@ -32,5 +32,4 @@ variable "project" {
 
 variable "owner" {
   type    = string
-  default = "default"
 }

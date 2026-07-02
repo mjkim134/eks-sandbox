@@ -46,5 +46,7 @@ resource "aws_vpc_endpoint" "s3_endpoint" {
   service_name = "com.amazonaws.${var.region}.s3"
   route_table_ids = module.vpc.private_route_table_ids
 
-  tags = var.tags
+  tags = merge(var.tags, {
+    Name = "${var.cluster_name}-s3-endpoint"
+  })
 }

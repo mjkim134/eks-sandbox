@@ -7,6 +7,13 @@ terraform {
       version = "~> 6.28"
     }
   }
+
+  backend "s3" {
+    bucket       = "eks-sandbox-apne2-tfstate"
+    key          = "init/terraform.tfstate"
+    region       = "ap-northeast-2"
+    use_lockfile = true
+  }
 }
 
 provider "aws" {
@@ -14,7 +21,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "tfstate" {
-  bucket = "minist-tfstate"
+  bucket = "eks-sandbox-apne2-tfstate"
 }
 
 resource "aws_s3_bucket_versioning" "tfstate" {

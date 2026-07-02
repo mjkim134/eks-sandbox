@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket       = "minist-tfstate"
+    bucket       = "eks-sandbox-apne2-tfstate"
     key          = "envs/dev/vpc/terraform.tfstate"
     region       = "ap-northeast-2"
     use_lockfile = true
