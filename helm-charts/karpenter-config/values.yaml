@@ -1,19 +1,19 @@
 metadata:
-  name: default
+  name: ""
 
-clusterName: "default-cluster"
-env: "dev"
+clusterName: ""
+env: ""
 
 nodePool:
   arch:
-    - "amd64"
+    - ""
   capacityTypes:
-    - "spot"
+    - ""
   instanceTypes:
-    - "t3.medium"
+    - ""
   expireAfter: "720h"
   limitCpu: 1000
   limitMemory: 1000Gi
 
 nodeClass:
-  role: "karpenter-node-iam-role-arn"
+  role: ""

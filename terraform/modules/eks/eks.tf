@@ -64,9 +64,12 @@ module "eks" {
     init = {
       create_launch_template     = true
       use_custom_launch_template = true
+      launch_template_use_name_prefix = false
+
       iam_role_attach_cni_policy = false
 
       name = "init"
+      use_name_prefix = false
 
       instance_types = var.instance_types
       capacity_type  = var.capacity_type

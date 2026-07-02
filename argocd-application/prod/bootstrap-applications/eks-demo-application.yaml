@@ -1,26 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: eks-demo
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/kube-prometheus-stack-84.5.0
+    path: helm-charts/eks-demo
     helm-charts:
       valueFiles:
-        - ../../helm-values/dev/kube-prometheus-stack-values.yaml
+        - ../../../helm-values/prod/eks-demo-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: eks-demo
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
     - CreateNamespace=true
-    - ServerSideApply=true

@@ -13,7 +13,7 @@ spec:
     path: helm-charts/karpenter-config
     helm-charts:
       valueFiles:
-        - ../../helm-values/dev/karpenter-config-values.yaml
+        - ../../../helm-values/dev/karpenter-config-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: karpenter

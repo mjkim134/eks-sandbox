@@ -1,8 +1,8 @@
 metadata:
-  name: minist-dev
+  name: eks-sandbox-dev
 
-clusterName: "minist-dev"
-nodeName: "minist-dev-karpenter-node"
+clusterName: "eks-sandbox-dev"
+nodeName: "eks-sandbox-dev-karpenter-node"
 env: "dev"
 
 nodePool:
@@ -18,4 +18,4 @@ nodePool:
   limitMemory: 1000Gi
 
 nodeClass:
-  role: arn:aws:iam::728138073365:role/eks-minist-dev-karpenter-node
+  role: arn:aws:iam::728138073365:role/eks-sandbox-dev-karpenter-node

@@ -2,7 +2,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket = "minist-tfstate"
+    bucket = "eks-sandbox-tfstate"
     key    = "envs/dev/vpc/terraform.tfstate"
     region = "ap-northeast-2"
   }

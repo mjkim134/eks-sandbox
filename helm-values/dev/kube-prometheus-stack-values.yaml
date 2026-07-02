@@ -22,15 +22,15 @@ grafana:
     annotations:
       alb.ingress.kubernetes.io/scheme: internet-facing # internet-facing or internal
       alb.ingress.kubernetes.io/target-type: ip
-      alb.ingress.kubernetes.io/group.name: shared-alb
+      alb.ingress.kubernetes.io/group.name: eks-sandbox-dev
       alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
       alb.ingress.kubernetes.io/ssl-redirect: "443"
       alb.ingress.kubernetes.io/success-codes: 200-302
-      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:728138073365:certificate/4a1e6268-b3a2-4ce2-8482-2e891acecc89
+      alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-northeast-2:728138073365:certificate/1cd6458c-4b7f-4eea-98ce-4acb209259cc
       alb.ingress.kubernetes.io/ssl-policy: ELBSecurityPolicy-TLS13-1-2-2021-06
-      external-dns.alpha.kubernetes.io/hostname: grafana.mjkim.click
+      external-dns.alpha.kubernetes.io/hostname: grafana.dev.mjkim.click
     hosts:
-    - grafana.mjkim.click
+    - grafana.dev.mjkim.click
     paths:
     - /*
   persistence:

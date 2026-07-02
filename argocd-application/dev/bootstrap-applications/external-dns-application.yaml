@@ -1,25 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: eks-demo
+  name: external-dns
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/eks-demo
+    path: helm-charts/external-dns-1.21.1
     helm-charts:
       valueFiles:
-        - ../../helm-values/dev/eks-demo-values.yaml
+        - ../../../helm-values/dev/external-dns-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: eks-demo
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+    - CreateNamespace=false

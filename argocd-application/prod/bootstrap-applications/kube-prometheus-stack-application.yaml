@@ -1,20 +1,26 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-app
+  name: kube-prometheus-stack
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: argocd-application/child-applications
+    path: helm-charts/kube-prometheus-stack-84.5.0
+    helm-charts:
+      valueFiles:
+        - ../../../helm-values/prod/kube-prometheus-stack-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: monitoring
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true
+    - ServerSideApply=true

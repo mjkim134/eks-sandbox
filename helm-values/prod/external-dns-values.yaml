@@ -5,7 +5,7 @@ sources:
 aws:
   region: ap-northeast-2
 policy: sync
-txtOwnerId: minist-prod
+txtOwnerId: eks-sandbox-prod
 serviceAccount:
   name: external-dns
   annotations:

@@ -1,10 +1,10 @@
-clusterName: minist-dev
+clusterName: eks-sandbox-dev
 serviceAccount:
   create: true
   name: aws-load-balancer-controller
   annotations:
     eks.amazonaws.com/role-arn: 
 region: ap-northeast-2
-vpcId: 
+vpcId: vpc-02c05e3b0db240c6f
 podDisruptionBugdet:
   maxUnavailable: 1

@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-load-balancer-controller
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mjkim134/eks-sandbox.git
+    targetRevision: HEAD
+    path: helm-charts/aws-load-balancer-controller-3.2.2
+    helm-charts:
+      valueFiles:
+        - ../../../helm-values/prod/aws-load-balancer-controller-values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=false

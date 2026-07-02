@@ -18,6 +18,14 @@ terraform {
 
 provider "aws" {
   region = "ap-northeast-2"
+
+  default_tags {
+    tags = {
+      Project   = "eks-sandbox"
+      Owner     = "minjune"
+      ManagedBy = "Terraform"
+    }
+  }
 }
 
 resource "aws_s3_bucket" "tfstate" {
