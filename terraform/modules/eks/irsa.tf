@@ -6,8 +6,9 @@ data "aws_route53_zone" "my_domain" {
 module "load_balancer_controller_irsa" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
 
-  name = "load-balancer-controller"
-
+  name = "${var.cluster_name}-load-balancer-controller-role"
+  use_name_prefix = false
+  
   attach_load_balancer_controller_policy = true
 
   oidc_providers = {
@@ -23,7 +24,8 @@ module "load_balancer_controller_irsa" {
 module "ebs_csi_irsa" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
 
-  name = "ebs-csi"
+  name = "${var.cluster_name}-ebs-csi-role"
+  use_name_prefix = false
 
   attach_ebs_csi_policy = true
 
@@ -40,7 +42,8 @@ module "ebs_csi_irsa" {
 module "external_dns_irsa" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
 
-  name = "external-dns"
+  name = "${var.cluster_name}-external-dns-role"
+  use_name_prefix = false
 
   attach_external_dns_policy    = true
   external_dns_hosted_zone_arns = [data.aws_route53_zone.my_domain.arn]
@@ -58,7 +61,8 @@ module "external_dns_irsa" {
 module "vpc_cni_ipv4_irsa" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
 
-  name = "vpc-cni-ipv4"
+  name = "${var.cluster_name}-vpc-cni-ipv4-role"
+  use_name_prefix = false
 
   attach_vpc_cni_policy = true
   vpc_cni_enable_ipv4   = true

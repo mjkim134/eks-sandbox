@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket       = "hyumin-tfstate"
+    bucket       = "minist-tfstate"
     key          = "envs/dev/vpc/terraform.tfstate"
     region       = "ap-northeast-2"
     use_lockfile = true

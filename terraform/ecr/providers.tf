@@ -9,10 +9,10 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "hyumin-tfstate"
-    key            = "terraform/ecr/terraform.tfstate"
-    region         = "ap-northeast-2"
-    use_lockfile   = true
+    bucket       = "minist-tfstate"
+    key          = "ecr/terraform.tfstate"
+    region       = "ap-northeast-2"
+    use_lockfile = true
   }
 }
 
@@ -22,7 +22,7 @@ provider "aws" {
   default_tags {
     tags = {
       Project   = "eks-sandbox"
-      Owner     = "hyumin"
+      Owner     = "minist"
       ManagedBy = "Terraform"
     }
   }

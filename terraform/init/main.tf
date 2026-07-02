@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "tfstate" {
-  bucket = "hyumin-tfstate"
+  bucket = "minist-tfstate"
 }
 
 resource "aws_s3_bucket_versioning" "tfstate" {

@@ -1,6 +1,6 @@
 region = "ap-northeast-2"
 
-cluster_name = "hyumin-prod"
+cluster_name = "minist-prod"
 vpc_cidr     = "10.130.0.0/16"
 
 enable_nat_gateway     = true
@@ -9,4 +9,4 @@ one_nat_gateway_per_az = true
 
 environment = "prod"
 project     = "eks-sandbox"
-owner       = "hyumin"
+owner       = "minist"

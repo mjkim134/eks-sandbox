@@ -2,7 +2,7 @@ data "terraform_remote_state" "vpc" {
   backend = "s3"
 
   config = {
-    bucket = "hyumin-tfstate"
+    bucket = "minist-tfstate"
     key    = "envs/prod/vpc/terraform.tfstate"
     region = "ap-northeast-2"
   }
@@ -13,7 +13,10 @@ module "eks" {
 
   cluster_name    = var.cluster_name
   cluster_version = var.cluster_version
-  my_ip_cidr      = var.my_ip_cidr
+
+  endpoint_private_access = var.endpoint_private_access
+  endpoint_public_access  = var.endpoint_public_access
+  my_ip_cidr              = var.my_ip_cidr
 
   instance_types = var.instance_types
   capacity_type  = var.capacity_type

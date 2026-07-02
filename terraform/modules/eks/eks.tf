@@ -12,7 +12,7 @@ module "eks" {
   authentication_mode                      = "API"
   enable_irsa                              = true
   enable_cluster_creator_admin_permissions = true
-  endpoint_private_access                  = true
+  endpoint_private_access                  = var.endpoint_private_access
   endpoint_public_access                   = var.endpoint_public_access
   endpoint_public_access_cidrs             = var.my_ip_cidr
 
@@ -82,6 +82,8 @@ module "eks" {
         AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
       }
 
+      iam_role_use_name_prefix = false
+
       create_security_group = false
 
       enable_efa_only = false
@@ -103,7 +105,7 @@ module "eks" {
         http_put_response_hop_limit = 1
       }
 
-      subnet_ids = module.vpc.private_subnets
+      subnet_ids = var.private_subnets
 
       tags = {
         Name                                        = "init"

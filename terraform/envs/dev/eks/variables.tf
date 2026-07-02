@@ -30,6 +30,14 @@ variable "desired_size" {
   type = number
 }
 
+variable "endpoint_private_access" {
+  type = bool
+}
+
+variable "endpoint_public_access" {
+  type = bool
+}
+
 variable "my_ip_cidr" {
   type = list(string)
 }
@@ -43,6 +51,5 @@ variable "project" {
 }
 
 variable "owner" {
-  type    = string
-  default = "default"
+  type = string
 }
