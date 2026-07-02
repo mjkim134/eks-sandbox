@@ -1,8 +1,8 @@
 metadata:
-  name: kimpala-dev
+  name: hyumin-dev
 
-clusterName: "kimpala-dev"
-nodeName: "kimpala-dev-karpenter-node"
+clusterName: "hyumin-dev"
+nodeName: "hyumin-dev-karpenter-node"
 env: "dev"
 
 nodePool:
@@ -18,4 +18,4 @@ nodePool:
   limitMemory: 1000Gi
 
 nodeClass:
-  role: arn:aws:iam::728138073365:role/eks-kimpala-dev-karpenter-node
+  role: arn:aws:iam::728138073365:role/eks-hyumin-dev-karpenter-node

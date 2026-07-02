@@ -9,7 +9,7 @@ terraform {
   }
 
   backend "s3" {
-    bucket         = "kimpala-id-tfstate"
+    bucket         = "hyumin-tfstate"
     key            = "terraform/ecr/terraform.tfstate"
     region         = "ap-northeast-2"
     use_lockfile   = true
@@ -21,12 +21,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Service      = "Test"
-      Organization = "tech"
-      Team         = "tech/devops"
-      Resource     = "ecr"
-      Env          = "dev"
-      Terraformed  = "true"
+      Project   = "eks-sandbox"
+      Owner     = "hyumin"
+      ManagedBy = "Terraform"
     }
   }
 }

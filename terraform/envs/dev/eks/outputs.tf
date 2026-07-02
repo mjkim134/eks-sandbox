@@ -15,10 +15,15 @@ output "cluster_certificate_authority_data" {
 
 output "cluster_primary_security_group_id" {
   value       = module.eks.cluster_primary_security_group_id
-  description = "The primary security group ID for EKS cluster and Karpenter nodes"
+  description = "The primary security group ID for Karpenter nodes"
 }
 
-output "vpc_id" {
-  value       = module.vpc.vpc_id
-  description = "The ID of the VPC created for this EKS cluster"
+output "oidc_provider_arn" {
+  value       = module.eks.oidc_provider_arn
+  description = "The ARN of the OIDC Provider (Used for creating custom IRSA outside this module)"
+}
+
+output "node_security_group_id" {
+  value       = module.eks.node_security_group_id
+  description = "The security group ID attached to the EKS worker nodes"
 }

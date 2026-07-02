@@ -1,4 +1,4 @@
-clusterName: kimpala-dev
+clusterName: hyumin-dev
 serviceAccount:
   create: true
   name: aws-load-balancer-controller

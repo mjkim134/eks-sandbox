@@ -5,7 +5,7 @@ sources:
 aws:
   region: ap-northeast-2
 policy: sync
-txtOwnerId: kimpala-dev
+txtOwnerId: hyumin-dev
 serviceAccount:
   name: external-dns
   annotations:
