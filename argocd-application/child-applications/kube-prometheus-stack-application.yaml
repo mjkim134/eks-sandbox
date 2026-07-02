@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm/kube-prometheus-stack-84.5.0
-    helm:
+    path: helm-charts/kube-prometheus-stack-84.5.0
+    helm-charts:
       valueFiles:
-        - ../../helm-values/kube-prometheus-stack-dev-values.yaml
+        - ../../helm-values/dev/kube-prometheus-stack-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring

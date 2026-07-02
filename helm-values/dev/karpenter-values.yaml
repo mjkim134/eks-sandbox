@@ -1,0 +1,29 @@
+serviceAccount:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-minist-dev-karpenter-controller
+
+settings:
+  clusterName: minist-dev
+
+controller:
+  resources:
+    limits:
+      memory: 1Gi
+    requests:
+      cpu: 100m
+      memory: 1Gi
+
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: karpenter.sh/nodepool
+          operator: DoesNotExist
+        - key: eks.amazonaws.com/nodegroup
+          operator: In
+          values:
+          - init-20260623113347218300000015
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - topologyKey: "kubernetes.io/hostname"

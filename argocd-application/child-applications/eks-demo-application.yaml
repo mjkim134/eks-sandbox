@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: karpenter-config
+  name: eks-demo
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "2"
@@ -10,16 +10,16 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/karpenter-config
+    path: helm-charts/eks-demo
     helm-charts:
       valueFiles:
-        - ../../helm-values/dev/karpenter-config-values.yaml
+        - ../../helm-values/dev/eks-demo-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: karpenter
+    namespace: eks-demo
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=false
+    - CreateNamespace=true

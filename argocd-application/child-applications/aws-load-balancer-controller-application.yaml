@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm/aws-load-balancer-controller-3.2.2
-    helm:
+    path: helm-charts/aws-load-balancer-controller-3.2.2
+    helm-charts:
       valueFiles:
-        - ../../helm-values/aws-load-balancer-controller-dev-values.yaml
+        - ../../helm-values/dev/aws-load-balancer-controller-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

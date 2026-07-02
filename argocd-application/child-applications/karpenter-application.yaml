@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm/karpenter-1.12.0
-    helm:
+    path: helm-charts/karpenter-1.12.0
+    helm-charts:
       valueFiles:
-        - ../../helm-values/karpenter-dev-values.yaml
+        - ../../helm-values/dev/karpenter-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: karpenter

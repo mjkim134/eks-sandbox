@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm/external-dns-1.21.1
-    helm:
+    path: helm-charts/external-dns-1.21.1
+    helm-charts:
       valueFiles:
-        - ../../helm-values/external-dns-dev-values.yaml
+        - ../../helm-values/dev/external-dns-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system

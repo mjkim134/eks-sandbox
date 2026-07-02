@@ -65,18 +65,18 @@ jobs:
 
     - name: Change Image tag
       run: |
-        sed -i "s|tag: .*|tag: \"d${{ steps.vars.outputs.sha_short }}\"|g" ../helm-values/eks-demo-app-dev-values.yaml
+        sed -i "s|tag: .*|tag: \"d${{ steps.vars.outputs.sha_short }}\"|g" ../helm-values/dev/eks-demo-values.yaml
         ls
       shell: bash
 
     - name: GIT commit and push docs
       env:
         CI_COMMIT_MESSAGE: Update Tag - d${{ steps.vars.outputs.sha_short }}
-        CI_COMMIT_AUTHOR: example
+        CI_COMMIT_AUTHOR: mjkim134
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "example@gmail.com"
+        git config --global user.email "mjkim134@gmail.com"
         git status
-        git add ../helm-values/eks-demo-app-dev-values.yaml
+        git add ../helm-values/dev/eks-demo-values.yaml
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
         git push origin main

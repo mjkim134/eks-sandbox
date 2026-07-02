@@ -1,0 +1,12 @@
+namespaceOverride: kube-system
+sources:
+  - service
+  - ingress
+aws:
+  region: ap-northeast-2
+policy: sync
+txtOwnerId: minist-dev
+serviceAccount:
+  name: external-dns
+  annotations:
+    eks.amazonaws.com/role-arn: 

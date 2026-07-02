@@ -1,0 +1,21 @@
+metadata:
+  name: minist-prod
+
+clusterName: "minist-prod"
+nodeName: "minist-prod-karpenter-node"
+env: "prod"
+
+nodePool:
+  arch:
+    - "amd64"
+  capacityTypes:
+    - "on-demand"
+  instanceTypes:
+    - "t3a.medium"
+    - "t3.medium"
+  expireAfter: "720h"
+  limitCpu: 1000
+  limitMemory: 1000Gi
+
+nodeClass:
+  role: arn:aws:iam::728138073365:role/eks-minist-prod-karpenter-node
