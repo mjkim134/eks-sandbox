@@ -9,4 +9,4 @@ one_nat_gateway_per_az = false
 
 environment = "dev"
 project     = "eks-sandbox"
-owner       = "minystic"
+owner       = "minyx"
