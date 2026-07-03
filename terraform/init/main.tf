@@ -22,7 +22,7 @@ provider "aws" {
   default_tags {
     tags = {
       Project   = "eks-sandbox"
-      Owner     = "minjune"
+      Owner     = "minystic"
       ManagedBy = "Terraform"
     }
   }

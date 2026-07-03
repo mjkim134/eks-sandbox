@@ -9,4 +9,4 @@ one_nat_gateway_per_az = true
 
 environment = "prod"
 project     = "eks-sandbox"
-owner       = "minjune"
+owner       = "minystic"

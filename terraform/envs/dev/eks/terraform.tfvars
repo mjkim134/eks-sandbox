@@ -14,4 +14,4 @@ my_ip_cidr              = ["222.121.125.201/32"]
 
 environment = "dev"
 project     = "eks-sandbox"
-owner       = "minjune"
+owner       = "minystic"
