@@ -6,11 +6,11 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: default
+  project: infra
   source:
-    repoURL: https://github.com/mjkim134/eks-sandbox.git
-    targetRevision: HEAD
-    path: helm/external-dns-1.21.1
+    repoURL: https://kubernetes-sigs.github.io/external-dns/
+    chart: external-dns
+    targetRevision: 1.21.1
     helm:
       valueFiles:
         - ../../../helm-values/dev/external-dns-values.yaml
