@@ -1,3 +1,12 @@
 spring:
   application:
     name: eks-demo
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, prometheus
+  endpoint:
+    health:
+      show-details: always
