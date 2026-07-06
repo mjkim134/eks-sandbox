@@ -1,25 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keda
+  name: metrics-server
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/keda-2.20.1
+    path: helm-charts/metrics-server-3.13.1
     helm-charts:
       valueFiles:
-        - ../../../helm-values/prod/keda-values.yaml
+        - ../../../helm-values/prod/metrics-server-values.yaml
   destination:
     server: https://kubernetes.default.svc
-    namespace: keda
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+    - CreateNamespace=false
