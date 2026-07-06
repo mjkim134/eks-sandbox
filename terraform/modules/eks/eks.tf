@@ -35,7 +35,13 @@ module "eks" {
   }
 
   addons = {
-    coredns    = {}
+    coredns    = {
+      configuration_values = jsonencode({
+        nodeSelector = {
+          "eks.amazonaws.com/nodegroup" = "init"
+        }
+      })
+    }
     kube-proxy = {}
     vpc-cni = {
       before_compute = true
