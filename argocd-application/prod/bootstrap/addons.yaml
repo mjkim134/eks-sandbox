@@ -1,14 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: bootstrap-app
+  name: addons
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: argocd-application/prod/bootstrap-applications
+    path: argocd-application/prod/addons
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
