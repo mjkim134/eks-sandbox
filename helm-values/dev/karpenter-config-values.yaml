@@ -12,7 +12,6 @@ nodePool:
     - "spot"
   instanceTypes:
     - "t3a.medium"
-    - "t3.medium"
   expireAfter: "720h"
   limitCpu: 1000
   limitMemory: 1000Gi

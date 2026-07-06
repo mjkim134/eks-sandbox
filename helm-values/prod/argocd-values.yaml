@@ -19,7 +19,7 @@ server:
     paths:
     - /
     pathType: Prefix
-    
+
 configs:
   params:
     server.insecure: true
@@ -27,3 +27,6 @@ configs:
 controller:
   nodeSelector:
     eks.amazonaws.com/nodegroup: init
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"

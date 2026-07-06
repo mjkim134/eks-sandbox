@@ -7,9 +7,26 @@ defaultRules:
     kubeApiserverHistogram: false
     kubeApiserverSlos: false
     kubeControllerManager: false
+    kubeProxy: false
     kubeSchedulerAlerting: false
     kubeSchedulerRecording: false
     windows: false
+
+alertmanager:
+  alertmanagerSpec:
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+
+crds:
+  upgradeJob:
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
 
 grafana:
   enabled: true
@@ -42,6 +59,11 @@ grafana:
     size: 5Gi
     finalizers:
     - kubernetes.io/pvc-protection
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: init
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
 
   dashboardProviders:
     dashboardproviders.yaml:
@@ -73,24 +95,43 @@ grafana:
 
 kubeApiServer:
   enabled: false
-kubelet:
-  enabled: true
 kubeControllerManager:
   enabled: false
-coreDns:
-  enabled: true
 kubeEtcd:
+  enabled: false
+kubeProxy:
   enabled: false
 kubeScheduler:
   enabled: false
-kubeProxy:
-  enabled: true
-kubeStateMetrics:
-  enabled: true
-nodeExporter:
-  enabled: true
+
+kube-state-metrics:
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: init
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+
 prometheusOperator:
-  enabled: true
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: init
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+
+  admissionWebhooks:
+    deployment:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: init
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+  
+  patch:
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
 
 prometheus-node-exporter:
   priorityClassName: system-node-critical
@@ -110,3 +151,6 @@ prometheus:
               storage: 10Gi
     nodeSelector:
       eks.amazonaws.com/nodegroup: init
+    tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
