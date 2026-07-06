@@ -105,7 +105,6 @@ module "eks" {
       taints = {
         addons = {
           key    = "CriticalAddonsOnly"
-          value  = "true"
           effect = "NO_SCHEDULE"
         }
       }
