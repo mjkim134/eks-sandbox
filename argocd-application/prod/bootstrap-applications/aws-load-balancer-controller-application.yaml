@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/aws-load-balancer-controller-3.2.2
-    helm-charts:
+    path: helm/aws-load-balancer-controller-3.2.2
+    helm:
       valueFiles:
         - ../../../helm-values/prod/aws-load-balancer-controller-values.yaml
   destination:

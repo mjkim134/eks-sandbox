@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/keda-2.20.1
-    helm-charts:
+    path: helm/keda-2.20.1
+    helm:
       valueFiles:
         - ../../../helm-values/dev/keda-values.yaml
   destination:

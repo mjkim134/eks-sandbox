@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/metrics-server-3.13.1
-    helm-charts:
+    path: helm/metrics-server-3.13.1
+    helm:
       valueFiles:
         - ../../../helm-values/dev/metrics-server-values.yaml
   destination:

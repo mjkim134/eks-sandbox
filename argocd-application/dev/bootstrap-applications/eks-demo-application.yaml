@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/eks-demo
-    helm-charts:
+    path: helm/eks-demo
+    helm:
       valueFiles:
         - ../../../helm-values/dev/eks-demo-values.yaml
   destination:

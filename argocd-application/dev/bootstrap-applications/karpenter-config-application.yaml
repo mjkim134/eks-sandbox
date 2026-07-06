@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/karpenter-config
-    helm-charts:
+    path: helm/karpenter-config
+    helm:
       valueFiles:
         - ../../../helm-values/dev/karpenter-config-values.yaml
   destination:

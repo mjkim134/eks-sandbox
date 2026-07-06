@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/external-dns-1.21.1
-    helm-charts:
+    path: helm/external-dns-1.21.1
+    helm:
       valueFiles:
         - ../../../helm-values/dev/external-dns-values.yaml
   destination:

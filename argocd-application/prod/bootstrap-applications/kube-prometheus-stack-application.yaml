@@ -10,8 +10,8 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: helm-charts/kube-prometheus-stack-84.5.0
-    helm-charts:
+    path: helm/kube-prometheus-stack-84.5.0
+    helm:
       valueFiles:
         - ../../../helm-values/prod/kube-prometheus-stack-values.yaml
   destination:
