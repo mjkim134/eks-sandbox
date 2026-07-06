@@ -26,7 +26,7 @@ module "eks" {
   security_group_tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "owned"
   }
-  
+
   create_node_security_group = true
 
   node_security_group_tags = {
@@ -62,13 +62,13 @@ module "eks" {
 
   eks_managed_node_groups = {
     init = {
-      create_launch_template     = true
-      use_custom_launch_template = true
+      create_launch_template          = true
+      use_custom_launch_template      = true
       launch_template_use_name_prefix = false
 
       iam_role_attach_cni_policy = false
 
-      name = "init"
+      name            = "init"
       use_name_prefix = false
 
       instance_types = var.instance_types
@@ -95,10 +95,18 @@ module "eks" {
         xvda = {
           device_name = "/dev/xvda"
           ebs = {
-            volume_type = "gp3"
-            encrypted   = true
+            volume_type           = "gp3"
+            encrypted             = true
             delete_on_termination = true
           }
+        }
+      }
+
+      taints = {
+        addons = {
+          key    = "CriticalAddonsOnly"
+          value  = "true"
+          effect = "NO_SCHEDULE"
         }
       }
 
