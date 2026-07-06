@@ -8,3 +8,6 @@ region: ap-northeast-2
 vpcId: vpc-05b43f9ffe96f3e76
 podDisruptionBugdet:
   maxUnavailable: 1
+
+nodeSelector:
+  eks.amazonaws.com/nodegroup: init

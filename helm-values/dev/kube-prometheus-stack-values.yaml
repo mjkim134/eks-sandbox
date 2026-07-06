@@ -108,3 +108,5 @@ prometheus:
           resources:
             requests:
               storage: 10Gi
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init

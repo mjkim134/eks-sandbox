@@ -23,3 +23,7 @@ server:
 configs:
   params:
     server.insecure: true
+
+controller:
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: init

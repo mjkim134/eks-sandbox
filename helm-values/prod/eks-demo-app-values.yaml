@@ -51,3 +51,6 @@ readinessProbe:
   httpGet:
     path: /actuator/health
     port: 8080
+
+nodeSelector:
+  eks.amazonaws.com/nodegroup: init
