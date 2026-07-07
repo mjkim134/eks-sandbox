@@ -127,12 +127,12 @@ prometheusOperator:
         - key: "CriticalAddonsOnly"
           operator: "Exists"
   
-  patch:
-    nodeSelector:
-      eks.amazonaws.com/nodegroup: init
-    tolerations:
-      - key: "CriticalAddonsOnly"
-        operator: "Exists"
+    patch:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: init
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
 
 prometheus-node-exporter:
   priorityClassName: system-node-critical
