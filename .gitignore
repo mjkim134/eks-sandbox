@@ -65,7 +65,6 @@ application-prod.properties
 *secret*.properties
 
 # Helm
-charts/
 *.tgz
 secrets.yaml
 *secret*.yaml
