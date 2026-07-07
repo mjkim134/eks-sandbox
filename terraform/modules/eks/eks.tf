@@ -5,6 +5,11 @@ module "eks" {
   name               = var.cluster_name
   kubernetes_version = var.cluster_version
 
+  access_entries = {
+    cluster_name  = var.cluster_name
+    principal_arn = aws_iam_role.karpenter_node.arn
+    type          = "EC2_LINUX"
+  }
 
   enable_auto_mode_custom_tags = false
   enable_kms_key_rotation      = false
@@ -21,7 +26,7 @@ module "eks" {
 
   create_iam_role       = true
   iam_role_use_name_prefix = false
-  
+
   create_node_iam_role  = false
   create_kms_key        = false
   create_security_group = true
