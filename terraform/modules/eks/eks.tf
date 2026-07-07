@@ -19,6 +19,9 @@ module "eks" {
   attach_encryption_policy = false
   encryption_config        = null
 
+  create_iam_role       = true
+  iam_role_use_name_prefix = false
+  
   create_node_iam_role  = false
   create_kms_key        = false
   create_security_group = true
