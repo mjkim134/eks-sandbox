@@ -1,25 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: external-dns
+  name: argocd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   sources:
-    - repoURL: https://kubernetes-sigs.github.io/external-dns/
-      chart: external-dns
-      targetRevision: 1.21.1
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argocd
+      targetRevision: 10.1.2
       helm:
         valueFiles:
-          - $eks-sandbox/helm-values/prod/external-dns-values.yaml
+          - $eks-sandbox/helm-values/prod/argocd-values.yaml
     - repoURL: https://github.com/mjkim134/eks-sandbox.git
       targetRevision: HEAD
       ref: eks-sandbox
   destination:
     server: https://kubernetes.default.svc
-    namespace: kube-system
+    namespace: argocd
   syncPolicy:
     automated:
       prune: true

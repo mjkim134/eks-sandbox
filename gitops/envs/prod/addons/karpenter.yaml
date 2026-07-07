@@ -6,14 +6,17 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: infra
-  source:
-    repoURL: public.ecr.aws/karpenter
-    chart: karpenter
-    targetRevision: 1.12.0
-    helm:
-      valueFiles:
-        - ../../../../helm-values/prod/karpenter-values.yaml
+  project: default
+  sources:
+    - repoURL: public.ecr.aws/karpenter
+      chart: karpenter
+      targetRevision: 1.12.0
+      helm:
+        valueFiles:
+          - $eks-sandbox/helm-values/prod/karpenter-values.yaml
+    - repoURL: https://github.com/mjkim134/eks-sandbox.git
+      targetRevision: HEAD
+      ref: eks-sandbox
   destination:
     server: https://kubernetes.default.svc
     namespace: karpenter

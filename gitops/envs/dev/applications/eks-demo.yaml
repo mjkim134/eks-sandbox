@@ -11,7 +11,7 @@ spec:
     path: gitops/charts/eks-demo
     helm:
       valueFiles:
-        - ../../../../helm-values/dev/eks-demo-values.yaml
+        - ../../../helm-values/dev/eks-demo-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: eks-demo

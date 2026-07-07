@@ -4,16 +4,19 @@ metadata:
   name: argocd
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: infra
-  source:
-    repoURL: https://argoproj.github.io/argo-helm
-    chart: argocd
-    targetRevision: 2.0.5
-    helm:
-      valueFiles:
-        - ../../../../helm-values/dev/argocd-values.yaml
+  project: default
+  sources:
+    - repoURL: https://argoproj.github.io/argo-helm
+      chart: argocd
+      targetRevision: 10.1.2
+      helm:
+        valueFiles:
+          - $eks-sandbox/helm-values/dev/argocd-values.yaml
+    - repoURL: https://github.com/mjkim134/eks-sandbox.git
+      targetRevision: HEAD
+      ref: eks-sandbox
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

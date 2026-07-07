@@ -6,14 +6,17 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: infra
-  source:
-    repoURL: https://kubernetes-sigs.github.io/metrics-server/
-    chart: metrics-server
-    targetRevision: 3.13.1
-    helm:
-      valueFiles:
-        - ../../../../helm-values/dev/metrics-server-values.yaml
+  project: default
+  sources:
+    - repoURL: https://kubernetes-sigs.github.io/metrics-server/
+      chart: metrics-server
+      targetRevision: 3.13.1
+      helm:
+        valueFiles:
+          - $eks-sandbox/helm-values/dev/metrics-server-values.yaml
+    - repoURL: https://github.com/mjkim134/eks-sandbox.git
+      targetRevision: HEAD
+      ref: eks-sandbox
   destination:
     server: https://kubernetes.default.svc
     namespace: kube-system
