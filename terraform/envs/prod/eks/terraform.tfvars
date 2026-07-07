@@ -2,7 +2,7 @@ region = "ap-northeast-2"
 
 cluster_name    = "eks-sandbox-prod"
 cluster_version = "1.35"
-instance_types  = ["m7i.large"]
+instance_types  = ["t3.medium"]
 capacity_type   = "on-demand"
 min_size        = 2
 max_size        = 3

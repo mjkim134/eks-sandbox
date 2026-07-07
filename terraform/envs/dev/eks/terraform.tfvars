@@ -2,7 +2,7 @@ region = "ap-northeast-2"
 
 cluster_name    = "eks-sandbox-dev"
 cluster_version = "1.35"
-instance_types  = ["t3a.medium", "t3.medium"]
+instance_types  = ["t3a.medium"]
 capacity_type   = "SPOT"
 min_size        = 2
 max_size        = 3
