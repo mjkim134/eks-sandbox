@@ -23,7 +23,7 @@ provider "aws" {
     tags = {
       Project   = "eks-sandbox"
       Owner     = "minyx"
-      ManagedBy = "Terraform"
+      Terraform = "true"
     }
   }
 }

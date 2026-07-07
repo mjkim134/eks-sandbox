@@ -42,14 +42,8 @@ variable "my_ip_cidr" {
   type = list(string)
 }
 
-variable "environment" {
-  type = string
-}
-
-variable "project" {
-  type = string
-}
-
-variable "owner" {
-  type = string
+variable "tags" {
+  description = "Tags for the eks cluster"
+  type        = map(string)
+  default     = {}
 }

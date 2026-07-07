@@ -22,14 +22,8 @@ variable "one_nat_gateway_per_az" {
   type = bool
 }
 
-variable "environment" {
-  type = string
-}
-
-variable "project" {
-  type = string
-}
-
-variable "owner" {
-  type    = string
+variable "tags" {
+  description = "Tags for the vpc"
+  type        = map(string)
+  default     = {}
 }

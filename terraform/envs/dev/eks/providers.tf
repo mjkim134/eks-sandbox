@@ -21,10 +21,9 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Env       = var.environment
-      Project   = var.project
-      Owner     = var.owner
-      ManagedBy = "Terraform"
+      Project   = "eks-sandbox-dev"
+      Owner     = "minyx"
+      Terraform = "true"
     }
   }
 }

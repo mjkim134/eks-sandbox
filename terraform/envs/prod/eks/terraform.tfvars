@@ -11,7 +11,3 @@ desired_size    = 2
 endpoint_private_access = true
 endpoint_public_access  = true
 my_ip_cidr              = ["222.121.125.201/32"]
-
-environment = "prod"
-project     = "eks-sandbox"
-owner       = "minyx"

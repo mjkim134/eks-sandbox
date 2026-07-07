@@ -17,6 +17,4 @@ module "acm" {
   ]
 
   wait_for_validation = true
-
-  tags = var.tags
 }
