@@ -136,6 +136,9 @@ prometheusOperator:
 
 prometheus-node-exporter:
   priorityClassName: system-node-critical
+  tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
 
 prometheus:
   prometheusSpec:
