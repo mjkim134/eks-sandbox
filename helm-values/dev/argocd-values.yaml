@@ -25,7 +25,7 @@ configs:
   params:
     server.insecure: true
 
-controller:
+global:
   nodeSelector:
     eks.amazonaws.com/nodegroup: init
   tolerations:
