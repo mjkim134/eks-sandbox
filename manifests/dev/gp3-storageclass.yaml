@@ -7,4 +7,5 @@ volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: gp3
   encrypted: "true"
+  delete_on_termination: "true"
 allowVolumeExpansion: true
