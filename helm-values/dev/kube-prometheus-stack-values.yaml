@@ -53,7 +53,7 @@ grafana:
   persistence:
     type: pvc
     enabled: true
-    storageClassName: gp2
+    storageClassName: gp3
     accessModes:
     - ReadWriteOnce
     size: 5Gi
@@ -144,7 +144,7 @@ prometheus:
     storageSpec:
       volumeClaimTemplate:
         spec:
-          storageClassName: gp2
+          storageClassName: gp3
           accessModes: ["ReadWriteOnce"]
           resources:
             requests:
