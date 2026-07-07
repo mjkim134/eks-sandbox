@@ -3,7 +3,7 @@ serviceAccount:
   create: true
   name: aws-load-balancer-controller
   annotations:
-    eks.amazonaws.com/role-arn: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-prod-load-balancer-controller-role
 region: ap-northeast-2
 vpcId: vpc-05b43f9ffe96f3e76
 podDisruptionBugdet:

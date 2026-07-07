@@ -9,7 +9,7 @@ txtOwnerId: eks-sandbox-prod
 serviceAccount:
   name: external-dns
   annotations:
-    eks.amazonaws.com/role-arn: 
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-prod-external-dns-role
 
 nodeSelector:
   eks.amazonaws.com/nodegroup: init
