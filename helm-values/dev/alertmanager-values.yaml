@@ -1,0 +1,7 @@
+alertmanager:
+  alertmanagerSpec:
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"

@@ -15,7 +15,9 @@ spec:
       targetRevision: 87.9.0
       helm:
         valueFiles:
-          - $eks-sandbox/helm-values/dev/kube-prometheus-stack-values.yaml
+          - $eks-sandbox/helm-values/dev/prometheus-values.yaml
+          - $eks-sandbox/helm-values/dev/grafana-values.yaml
+          - $eks-sandbox/helm-values/dev/alertmanager-values.yaml
     - repoURL: https://github.com/mjkim134/eks-sandbox.git
       targetRevision: HEAD
       ref: eks-sandbox

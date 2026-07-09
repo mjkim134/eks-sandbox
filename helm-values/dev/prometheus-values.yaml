@@ -1,0 +1,86 @@
+defaultRules:
+  create: true
+  rules:
+    etcd: false
+    kubeApiserverAvailability: false
+    kubeApiserverBurnrate: false
+    kubeApiserverHistogram: false
+    kubeApiserverSlos: false
+    kubeControllerManager: false
+    kubeProxy: false
+    kubeSchedulerAlerting: false
+    kubeSchedulerRecording: false
+    windows: false
+
+crds:
+  upgradeJob:
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init
+    tolerations:
+      - key: "CriticalAddonsOnly"
+        operator: "Exists"
+
+kubeApiServer:
+  enabled: false
+kubeControllerManager:
+  enabled: false
+kubeEtcd:
+  enabled: false
+kubeProxy:
+  enabled: false
+kubeScheduler:
+  enabled: false
+
+kube-state-metrics:
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: init
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+
+prometheusOperator:
+  nodeSelector:
+    eks.amazonaws.com/nodegroup: init
+  tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
+
+  admissionWebhooks:
+    deployment:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: init
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+  
+    patch:
+      nodeSelector:
+        eks.amazonaws.com/nodegroup: init
+      tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+
+prometheus-node-exporter:
+  priorityClassName: system-node-critical
+  tolerations:
+        - key: "CriticalAddonsOnly"
+          operator: "Exists"
+
+prometheus:
+  prometheusSpec:
+    serviceMonitorSelectorNilUsesHelmValues: false
+    retention: 5d
+    retentionSize: 10GiB
+    storageSpec:
+      volumeClaimTemplate:
+        spec:
+          storageClassName: gp3
+          accessModes: ["ReadWriteOnce"]
+          resources:
+            requests:
+              storage: 10Gi
+    nodeSelector:
+      eks.amazonaws.com/nodegroup: init
+    tolerations:
+    - key: "CriticalAddonsOnly"
+      operator: "Exists"
