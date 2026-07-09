@@ -10,4 +10,3 @@ desired_size    = 2
 
 endpoint_private_access = true
 endpoint_public_access  = true
-my_ip_cidr              = ["x.x.x.x/32"]
