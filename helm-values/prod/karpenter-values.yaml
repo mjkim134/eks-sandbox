@@ -4,6 +4,7 @@ serviceAccount:
 
 settings:
   clusterName: eks-sandbox-prod
+  clusterEndpoint:
 
 controller:
   resources:
