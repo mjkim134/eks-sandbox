@@ -75,7 +75,7 @@ jobs:
         CI_COMMIT_AUTHOR: mjkim134
       run: |
         git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "mjkim134@gmail.com"
+        git config --global user.email "example@example.com"
         git status
         git add ../helm-values/dev/eks-demo-values.yaml
         git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
