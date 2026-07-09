@@ -17,6 +17,7 @@ spec:
       ebs:
         volumeType: gp3
         encrypted: true
+        kmsKeyID: "alias/aws/ebs"
         deleteOnTermination: true
   tags:
       Name: "eks-sandbox-dev-karpenter-node"
