@@ -52,3 +52,8 @@ readinessProbe:
   httpGet:
     path: /actuator/health
     port: 8080
+
+serviceMonitor:
+  enabled: true
+  path: /actuator/prometheus
+  interval: 15s
