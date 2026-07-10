@@ -71,7 +71,8 @@ secrets.yaml
 *secrets*.yaml
 !*.enc.yaml
 !*external-secrets*
-
+!clustersecretstore.yaml
+!externalsecret.yaml
 
 # Environment
 .env
