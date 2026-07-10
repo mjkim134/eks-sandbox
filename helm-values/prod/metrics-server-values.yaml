@@ -3,3 +3,10 @@ nodeSelector:
 tolerations:
   - key: "CriticalAddonsOnly"
     operator: "Exists"
+
+replicas : 2
+
+podDisruptionBudget:
+  # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
+  enabled: true
+  minAvailable: 1

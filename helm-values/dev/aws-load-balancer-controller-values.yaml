@@ -6,11 +6,17 @@ serviceAccount:
     eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-dev-load-balancer-controller-role
 region: ap-northeast-2
 vpcId: vpc-02c05e3b0db240c6f
-podDisruptionBugdet:
-  maxUnavailable: 1
 
 nodeSelector:
   eks.amazonaws.com/nodegroup: init
 tolerations:
   - key: "CriticalAddonsOnly"
     operator: "Exists"
+
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

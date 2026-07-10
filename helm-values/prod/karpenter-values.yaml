@@ -4,6 +4,7 @@ serviceAccount:
 
 settings:
   clusterName: eks-sandbox-prod
+  # Terraform으로 EKS 클러스터 생성 후 cluseterEndpoint를 필수 주입
   clusterEndpoint:
 
 controller:

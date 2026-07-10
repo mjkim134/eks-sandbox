@@ -1,3 +1,12 @@
+controller:
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+
 server:
   ingress:
     enabled: true
@@ -20,12 +29,28 @@ server:
     paths:
     - /
     pathType: Prefix
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+repoServer:
+  resources:
+    limits:
+      cpu: 50m
+      memory: 128Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
 
 configs:
   params:
     server.insecure: true
 
-controller:
+global:
   nodeSelector:
     eks.amazonaws.com/nodegroup: init
   tolerations:

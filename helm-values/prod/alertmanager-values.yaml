@@ -5,6 +5,9 @@ alertmanager:
     tolerations:
       - key: "CriticalAddonsOnly"
         operator: "Exists"
+    resources:
+      requests:
+        memory: 400Mi
 
   config:
     global:
