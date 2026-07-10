@@ -5,7 +5,7 @@ metadata:
 spec:
   role: arn:aws:iam::728138073365:role/eks-sandbox-dev-karpenter-node
   amiSelectorTerms:
-    - alias: "al2023@v20260423"
+    - alias: "al2023"
   subnetSelectorTerms:
     - tags:
         karpenter.sh/discovery: eks-sandbox-dev
