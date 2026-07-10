@@ -5,8 +5,6 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
   sources:
@@ -15,7 +13,7 @@ spec:
       targetRevision: 3.13.1
       helm:
         valueFiles:
-          - $eks-sandbox/helm-values/prod/metrics-server-values.yaml
+          - $eks-sandbox/helm-values/dev/metrics-server-values.yaml
     - repoURL: https://github.com/mjkim134/eks-sandbox.git
       targetRevision: HEAD
       ref: eks-sandbox

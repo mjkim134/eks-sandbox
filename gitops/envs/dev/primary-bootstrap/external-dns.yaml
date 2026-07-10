@@ -1,32 +1,28 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kube-prometheus-stack
+  name: external-dns
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   sources:
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
-      targetRevision: 87.9.0
+    - repoURL: https://kubernetes-sigs.github.io/external-dns/
+      chart: external-dns
+      targetRevision: 1.21.1
       helm:
         valueFiles:
-          - $eks-sandbox/helm-values/dev/prometheus-values.yaml
-          - $eks-sandbox/helm-values/dev/grafana-values.yaml
-          - $eks-sandbox/helm-values/dev/alertmanager-values.yaml
+          - $eks-sandbox/helm-values/dev/external-dns-values.yaml
     - repoURL: https://github.com/mjkim134/eks-sandbox.git
       targetRevision: HEAD
       ref: eks-sandbox
   destination:
     server: https://kubernetes.default.svc
-    namespace: monitoring
+    namespace: kube-system
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
     syncOptions:
-    - CreateNamespace=true
+    - CreateNamespace=false

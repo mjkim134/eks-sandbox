@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: addons-dev
+  name: secondary-bootstrap-prod
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: gitops/envs/dev/addons
+    path: gitops/envs/prod/secondary-bootstrap
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
