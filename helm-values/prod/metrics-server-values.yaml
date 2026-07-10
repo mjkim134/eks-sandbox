@@ -10,3 +10,7 @@ podDisruptionBudget:
   # https://kubernetes.io/docs/tasks/run-application/configure-pdb/
   enabled: true
   minAvailable: 1
+
+resources:
+  limits:
+    memory: 400Mi

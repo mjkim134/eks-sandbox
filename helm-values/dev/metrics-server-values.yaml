@@ -3,3 +3,7 @@ nodeSelector:
 tolerations:
   - key: "CriticalAddonsOnly"
     operator: "Exists"
+
+resources:
+  limits:
+    memory: 400Mi

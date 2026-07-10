@@ -57,3 +57,9 @@ serviceMonitor:
   enabled: true
   path: /actuator/prometheus
   interval: 15s
+
+replicaCount: 2
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
