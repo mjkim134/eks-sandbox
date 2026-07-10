@@ -33,18 +33,12 @@ server:
     limits:
       cpu: 100m
       memory: 256Mi
-    requests:
-      cpu: 50m
-      memory: 64Mi
 
 repoServer:
   resources:
     limits:
       cpu: 1
       memory: 1Gi
-    requests:
-      cpu: 10m
-      memory: 64Mi
 
 configs:
   params:
