@@ -76,7 +76,7 @@ module "eks" {
   control_plane_subnet_ids = var.intra_subnets
 
   eks_managed_node_groups = {
-    init-v2 = {
+    init = {
       create_launch_template          = true
       use_custom_launch_template      = true
       launch_template_use_name_prefix = false
