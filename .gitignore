@@ -70,6 +70,8 @@ secrets.yaml
 *secret*.yaml
 *secrets*.yaml
 !*.enc.yaml
+!*external-secrets*
+
 
 # Environment
 .env
