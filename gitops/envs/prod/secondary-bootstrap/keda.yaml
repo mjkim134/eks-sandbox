@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotaions:
+  annotations:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
