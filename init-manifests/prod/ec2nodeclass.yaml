@@ -15,6 +15,7 @@ spec:
   blockDeviceMappings:
     - prodiceName: /prod/xvda
       ebs:
+        volumeSize: 100Gi
         volumeType: gp3
         encrypted: true
         kmsKeyID: "alias/aws/ebs"
