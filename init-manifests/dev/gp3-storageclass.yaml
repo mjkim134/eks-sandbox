@@ -7,6 +7,5 @@ volumeBindingMode: WaitForFirstConsumer
 parameters:
   type: gp3
   encrypted: "true"
-  kmsKeyID: "alias/aws/ebs"
-  delete_on_termination: "true"
+  kmsKeyId: "alias/aws/ebs"
 allowVolumeExpansion: true
