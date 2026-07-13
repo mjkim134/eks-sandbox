@@ -47,10 +47,10 @@ prometheusOperator:
   resources:
     limits:
       cpu: 200m
-      memory: 200Mi
+      memory: 256Mi
     requests:
       cpu: 100m
-      memory: 100Mi
+      memory: 128Mi
 
   admissionWebhooks:
     deployment:
@@ -73,7 +73,7 @@ prometheus-node-exporter:
 prometheus:
   prometheusSpec:
     serviceMonitorSelectorNilUsesHelmValues: false
-    retention: 5d
+    retention: 15d
     retentionSize: 10GiB
     storageSpec:
       volumeClaimTemplate:
@@ -90,4 +90,8 @@ prometheus:
       operator: "Exists"
     resources:
       requests:
-        memory: 400Mi
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        cpu: 2
+        memory: 2Gi

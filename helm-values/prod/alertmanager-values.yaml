@@ -9,7 +9,11 @@ alertmanager:
         operator: "Exists"
     resources:
       requests:
-        memory: 400Mi
+        cpu: 50m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 512Mi
 
   config:
     global:

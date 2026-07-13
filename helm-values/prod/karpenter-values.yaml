@@ -9,11 +9,12 @@ settings:
 
 controller:
   resources:
-    limits:
-      memory: 1Gi
     requests:
-      cpu: 100m
+      cpu: 500m
       memory: 1Gi
+    limits:
+      cpu: 2
+      memory: 2Gi
 
 affinity:
   nodeAffinity:

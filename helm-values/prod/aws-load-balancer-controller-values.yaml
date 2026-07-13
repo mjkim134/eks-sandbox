@@ -14,12 +14,12 @@ tolerations:
     operator: "Exists"
 
 resources:
-  limits:
-    cpu: 100m
-    memory: 128Mi
   requests:
     cpu: 100m
-    memory: 128Mi
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
 
 podDisruptionBugdet:
   maxUnavailable: 1

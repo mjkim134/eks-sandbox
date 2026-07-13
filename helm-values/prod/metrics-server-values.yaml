@@ -12,5 +12,9 @@ podDisruptionBudget:
   minAvailable: 1
 
 resources:
+  requests:
+    cpu: 100m
+    memory: 256Mi
   limits:
-    memory: 400Mi
+    cpu: 500m
+    memory: 512Mi

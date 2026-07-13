@@ -47,10 +47,10 @@ prometheusOperator:
   resources:
     limits:
       cpu: 200m
-      memory: 200Mi
+      memory: 256Mi
     requests:
       cpu: 100m
-      memory: 100Mi
+      memory: 128Mi
 
   admissionWebhooks:
     deployment:
@@ -93,4 +93,8 @@ prometheus:
       operator: "Exists"
     resources:
       requests:
-        memory: 400Mi
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 1Gi
