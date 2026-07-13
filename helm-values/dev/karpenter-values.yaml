@@ -5,7 +5,7 @@ serviceAccount:
 settings:
   clusterName: eks-sandbox-dev
   # Terraform으로 EKS 클러스터 생성 후 cluseterEndpoint를 필수 주입
-  clusterEndpoint: "https://78CD04F315B9B509F9BCABCEE96ACBF9.sk1.ap-northeast-2.eks.amazonaws.com"
+  clusterEndpoint: "https://6B471FAD661518228BACE7FFDDE6427D.gr7.ap-northeast-2.eks.amazonaws.com"
 
 controller:
   resources:

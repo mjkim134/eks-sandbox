@@ -14,9 +14,9 @@ tolerations:
     operator: "Exists"
 
 resources:
-  limits:
+  requests:
     cpu: 50m
     memory: 128Mi
-  requests:
+  limits:
     cpu: 200m
     memory: 256Mi
