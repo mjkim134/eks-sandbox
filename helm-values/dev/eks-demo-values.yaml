@@ -1,5 +1,5 @@
 image:
-  repository: 728138073365.dkr.ecr.ap-northeast-2.amazonaws.com/eks-sandbox
+  repository: 728138073365.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo
   pullPolicy: IfNotPresent
   tag: "d470b5a52"
 
