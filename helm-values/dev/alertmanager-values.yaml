@@ -1,7 +1,7 @@
 alertmanager:
   alertmanagerSpec:
     secrets:
-      - slack-webhook-secret
+      - alertmanager-slack-secret
     nodeSelector:
       eks.amazonaws.com/nodegroup: init
     tolerations:
