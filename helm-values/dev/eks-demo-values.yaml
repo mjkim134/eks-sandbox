@@ -11,6 +11,11 @@ serviceAccount:
   annotations:
     eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-demo-dev-role
 
+env:
+  - name: AWS_REGION
+    value: "ap-northeast-2"
+  - name: SQS_QUEUE_NAME
+    value: "eks-sandbox-dev-sqs"
 
 service:
   type: ClusterIP
