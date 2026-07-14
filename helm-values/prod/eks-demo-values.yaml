@@ -78,3 +78,8 @@ replicaCount: 2
 podDisruptionBudget:
   enabled: true
   minAvailable: 1
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 80

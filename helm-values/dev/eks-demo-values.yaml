@@ -72,3 +72,8 @@ serviceMonitor:
   enabled: true
   path: /actuator/prometheus
   interval: 15s
+autoscaling:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
