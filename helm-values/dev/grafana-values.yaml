@@ -45,7 +45,7 @@ grafana:
       cpu: 500m
       memory: 1Gi
   admin:
-    existingSecret: "grafana-admin-credentials"
+    existingSecret: "grafana-admin-secret"
     userKey: admin-user
     passwordKey: admin-password
 
