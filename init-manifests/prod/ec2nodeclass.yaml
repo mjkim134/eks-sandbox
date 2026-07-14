@@ -13,7 +13,7 @@ spec:
     - tags:
         karpenter.sh/discovery: eks-sandbox-prod
   blockDeviceMappings:
-    - deviceName: /prod/xvda
+    - deviceName: /dev/xvda
       ebs:
         volumeSize: 100Gi
         volumeType: gp3
