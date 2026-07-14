@@ -53,12 +53,20 @@ resources:
 
 livenessProbe:
   httpGet:
-    path: /actuator/health
+    path: /actuator/health/liveness
     port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 10
+  failureThreshold: 3
+  timeoutSeconds: 2
 readinessProbe:
   httpGet:
-    path: /actuator/health
+    path: /actuator/health/readiness
     port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 5
+  failureThreshold: 3
+  timeoutSeconds: 2
 
 serviceMonitor:
   enabled: true
