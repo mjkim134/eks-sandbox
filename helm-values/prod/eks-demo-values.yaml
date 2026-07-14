@@ -8,7 +8,8 @@ fullnameOverride: "eks-demo"
 namespace: eks-demo
 
 serviceAccount:
-  create: false
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-demo-prod-role
 
 service:
   type: ClusterIP
