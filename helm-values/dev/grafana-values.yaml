@@ -44,6 +44,10 @@ grafana:
     limits:
       cpu: 500m
       memory: 1Gi
+  admin:
+    existingSecret: "grafana-admin-credentials"
+    userKey: admin-user
+    passwordKey: admin-password
 
   dashboardProviders:
     dashboardproviders.yaml:
