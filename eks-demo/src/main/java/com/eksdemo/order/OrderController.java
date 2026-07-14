@@ -21,7 +21,7 @@ public class OrderController {
     
     private final SqsTemplate sqsTemplate;
     
-    @Value("${sqs.queue.name:eks-sandbox-queue}")
+    @Value("${sqs.queue.name}")
     private String queueName;
 
     public OrderController(SqsTemplate sqsTemplate) {
