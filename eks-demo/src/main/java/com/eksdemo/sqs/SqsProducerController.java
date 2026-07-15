@@ -1,4 +1,4 @@
-package com.eksdemo.order;
+package com.eksdemo.sqs;
 
 import io.awspring.cloud.sqs.operations.SqsTemplate;
 import org.slf4j.Logger;
@@ -15,31 +15,31 @@ import java.util.Map;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1/order")
-public class OrderController {
-    private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
+@RequestMapping("/api/v1/sqs")
+public class SqsProducerController {
+    private static final Logger logger = LoggerFactory.getLogger(SqsProducerController.class);
     
     private final SqsTemplate sqsTemplate;
     
     @Value("${sqs.queue.name}")
     private String queueName;
 
-    public OrderController(SqsTemplate sqsTemplate) {
+    public SqsProducerController(SqsTemplate sqsTemplate) {
         this.sqsTemplate = sqsTemplate;
     }
 
-    @PostMapping
+    @PostMapping("/publish")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Map<String, String> createOrder() {
-        String orderId = UUID.randomUUID().toString();
+    public Map<String, String> publishMessage() {
+        String messageId = UUID.randomUUID().toString();
         
-        sqsTemplate.send(queueName, "Order Created: " + orderId);
-        logger.info("Sent order to SQS: {}", orderId);
+        sqsTemplate.send(queueName, "Dummy Message: " + messageId);
+        logger.info("Sent dummy message to SQS: {}", messageId);
         
         Map<String, String> response = new HashMap<>();
         response.put("status", "ACCEPTED");
-        response.put("orderId", orderId);
-        response.put("message", "Order successfully pushed to SQS");
+        response.put("messageId", messageId);
+        response.put("message", "Dummy message successfully pushed to SQS");
         return response;
     }
 }
