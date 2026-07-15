@@ -78,8 +78,12 @@ replicaCount: 2
 podDisruptionBudget:
   enabled: true
   minAvailable: 1
-autoscaling:
-  enabled: true
-  minReplicas: 1
-  maxReplicas: 20
-  targetCPUUtilizationPercentage: 80
+
+keda:
+  minReplicaCount: 5
+  maxReplicaCount: 20
+  awsSQSQueue:
+    queueURL: https://sqs.ap-northeast-2.amazonaws.com/728138073365/eks-sandbox-prod-sqs
+    queueLength: "500"
+  cpu:
+    value: "70"
