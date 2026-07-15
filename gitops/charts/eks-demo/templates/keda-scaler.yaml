@@ -1,0 +1,31 @@
+apiVersion: keda.sh/v1alpha1
+kind: TriggerAuthentication
+metadata:
+  name: aws-sqs-auth
+  namespace: {{ .Release.Namespace }}
+spec:
+  podIdentity:
+    provider: aws-eks
+---
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: eks-demo-sqs-scaler
+  namespace: {{ .Release.Namespace }}
+spec:
+  scaleTargetRef:
+    name: {{ include "eks-demo.fullname" . }}
+  minReplicaCount: {{ .Values.keda.minReplicaCount }}
+  maxReplicaCount: {{ .Values.keda.maxReplicaCount }}
+  triggers:
+    - type: aws-sqs-queue
+      authenticationRef:
+        name: aws-sqs-auth
+      metadata:
+        queueURL: {{ .Values.keda.awsSQSQueue.queueURL }}
+        awsRegion: ap-northeast-2
+        queueLength: {{ .Values.keda.awsSQSQueue.queueLength | quote }}
+    - type: cpu
+      metadata:
+        type: Utilization
+        value: {{ .Values.keda.cpu.value | quote }}
