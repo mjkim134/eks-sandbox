@@ -27,3 +27,11 @@ resources:
   limits:
     cpu: 100m
     memory: 128Mi
+
+serviceAccount:
+  operator:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/keda-dev-role
+  metricServer:
+    annotations:
+      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/keda-dev-role
