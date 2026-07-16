@@ -81,3 +81,9 @@ keda:
     queueLength: "500"
   cpu:
     value: "80"
+
+rollout:
+  canary:
+    steps:
+      - setWeight: 20
+      - pause: {duration: 5m}
