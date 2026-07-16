@@ -1,7 +1,8 @@
-module "irsa" {
+module "eks_demo_irsa" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
 
-  name = "eks-demo-prod-role"
+  name = "${var.cluster_name}-eks-demo-role"
+  use_name_prefix = false
 
   oidc_providers = {
     this = {
@@ -11,12 +12,12 @@ module "irsa" {
   }
 
   policies = {
-    sqs_policy = aws_iam_policy.sqs_policy.arn
+    sqs_policy = aws_iam_policy.eks_demo_policy.arn
   }
 }
 
-resource "aws_iam_policy" "sqs_policy" {
-  name = "eks-demo-prod-sqs-policy"
+resource "aws_iam_policy" "eks_demo_policy" {
+  name = "${var.cluster_name}-eks-demo-policy"
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
