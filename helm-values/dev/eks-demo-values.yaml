@@ -78,7 +78,7 @@ keda:
   maxReplicaCount: 10
   awsSQSQueue:
     queueURL: https://sqs.ap-northeast-2.amazonaws.com/728138073365/eks-demo-dev-sqs
-    queueLength: "500"
+    queueLength: "50"
   cpu:
     value: "80"
 
