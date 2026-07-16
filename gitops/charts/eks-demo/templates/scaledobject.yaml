@@ -20,5 +20,5 @@ spec:
         queueLength: {{ .Values.keda.awsSQSQueue.queueLength | quote }}
     - type: cpu
       metadata:
-        type: Utilization
+        metricType: Utilization
         value: {{ .Values.keda.cpu.value | quote }}
