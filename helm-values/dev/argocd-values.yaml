@@ -39,12 +39,6 @@ server:
 
   extensions:
     enabled: true
-  volumeMounts:
-    - name: extensions
-      mountPath: /shared/app/custom/extensions
-  volumes:
-    - name: extensions
-      emptyDir: {}
   initContainers:
     - name: download-rollout-extension
       image: curlimages/curl
