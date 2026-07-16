@@ -39,17 +39,11 @@ server:
 
   extensions:
     enabled: true
-  initContainers:
-    - name: download-rollout-extension
-      image: curlimages/curl
-      command: ["/bin/sh", "-c"]
-      args:
-        - |
-          curl -L -o /tmp/extension.tar.gz https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.6/extension.tar.gz
-          tar -xf /tmp/extension.tar.gz -C /shared/app/custom/extensions          
-      volumeMounts:
-        - name: extensions
-          mountPath: /shared/app/custom/extensions
+    extensionList:
+      - name: rollout-extension
+        env:
+          - name: EXTENSION_URL
+            value: https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.7/extension.tar
 
 repoServer:
   resources:
