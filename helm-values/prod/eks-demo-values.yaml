@@ -83,7 +83,7 @@ keda:
   minReplicaCount: 5
   maxReplicaCount: 20
   awsSQSQueue:
-    queueURL: https://sqs.ap-northeast-2.amazonaws.com/728138073365/eks-sandbox-prod-sqs
+    queueURL: https://sqs.ap-northeast-2.amazonaws.com/728138073365/eks-demo-prod-sqs
     queueLength: "500"
   cpu:
     value: "70"
