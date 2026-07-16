@@ -160,6 +160,10 @@ tolerations: []
 
 affinity: {}
 
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1
+
 keda:
   minReplicaCount:
   maxReplicaCount:
