@@ -15,7 +15,7 @@ env:
   - name: AWS_REGION
     value: "ap-northeast-2"
   - name: SQS_QUEUE_NAME
-    value: "eks-sandbox-prod-sqs"
+    value: "eks-demo-prod-sqs"
 
 service:
   type: ClusterIP
