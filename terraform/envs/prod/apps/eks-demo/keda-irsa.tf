@@ -8,7 +8,7 @@ module "keda_irsa" {
     this = {
       provider_arn               = data.terraform_remote_state.eks.outputs.oidc_provider_arn
       namespace_service_accounts = [
-        "keda:keda-metrics-apiserver",
+        "keda:keda-metrics-server",
         "keda:keda-operator"
         ]
     }
