@@ -168,3 +168,11 @@ keda:
     queueLength: 
   cpu:
     value:
+
+rollout:
+  canary:
+    steps:
+      - setWeight:
+      - pause: {}
+    # - setWeight: 20
+    # - pause: {duration: 10m}
