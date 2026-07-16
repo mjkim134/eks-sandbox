@@ -19,6 +19,6 @@ spec:
         awsRegion: ap-northeast-2
         queueLength: {{ .Values.keda.awsSQSQueue.queueLength | quote }}
     - type: cpu
+      metricType: Utilization
       metadata:
-        metricType: Utilization
         value: {{ .Values.keda.cpu.value | quote }}
