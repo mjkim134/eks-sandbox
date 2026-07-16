@@ -18,6 +18,7 @@ spec:
         queueURL: {{ .Values.keda.awsSQSQueue.queueURL }}
         awsRegion: ap-northeast-2
         queueLength: {{ .Values.keda.awsSQSQueue.queueLength | quote }}
+        identityOwner: operator
     - type: cpu
       metricType: Utilization
       metadata:
