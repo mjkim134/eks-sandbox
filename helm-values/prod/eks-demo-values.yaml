@@ -9,7 +9,7 @@ namespace: eks-demo
 
 serviceAccount:
   annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-demo-prod-role
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-dev-eks-demo-role
 
 env:
   - name: AWS_REGION

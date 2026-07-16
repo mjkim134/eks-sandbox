@@ -31,7 +31,7 @@ resources:
 serviceAccount:
   operator:
     annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/keda-dev-role
+      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-dev-keda-role
   metricServer:
     annotations:
-      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/keda-dev-role
+      eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-dev-keda-role
