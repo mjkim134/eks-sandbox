@@ -1,7 +1,7 @@
 image:
   repository: 728138073365.dkr.ecr.ap-northeast-2.amazonaws.com/eks-demo
   pullPolicy: IfNotPresent
-  tag: "d470b5a52"
+  tag: "d51298209"
 
 nameOverride: "eks-demo"
 fullnameOverride: "eks-demo"
