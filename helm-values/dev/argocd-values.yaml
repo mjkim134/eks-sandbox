@@ -37,6 +37,26 @@ server:
       cpu: 500m
       memory: 512Mi
 
+  extensions:
+    enabled: true
+  volumeMounts:
+    - name: extensions
+      mountPath: /shared/app/custom/extensions
+  volumes:
+    - name: extensions
+      emptyDir: {}
+  initContainers:
+    - name: download-rollout-extension
+      image: curlimages/curl
+      command: ["/bin/sh", "-c"]
+      args:
+        - |
+          curl -L -o /tmp/extension.tar.gz https://github.com/argoproj-labs/rollout-extension/releases/download/v0.3.6/extension.tar.gz
+          tar -xf /tmp/extension.tar.gz -C /shared/app/custom/extensions          
+      volumeMounts:
+        - name: extensions
+          mountPath: /shared/app/custom/extensions
+
 repoServer:
   resources:
     requests:
