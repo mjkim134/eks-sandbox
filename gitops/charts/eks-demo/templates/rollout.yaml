@@ -10,6 +10,12 @@ spec:
   {{- end }}
   strategy:
     canary:
+      canaryService: {{ include "eks-demo.fullname" . }}-canary
+      stableService: {{ include "eks-demo.fullname" . }}
+      trafficRouting:
+        alb:
+          ingress: {{ include "eks-demo.fullname" . }}
+          servicePort: {{ .Values.service.port }}
       steps:
         {{- toYaml .Values.rollout.canary.steps | nindent 8 }}
   selector:
