@@ -73,6 +73,7 @@ serviceMonitor:
   interval: 15s
 
 keda:
+  enabled: true
   minReplicaCount: 1
   maxReplicaCount: 10
   awsSQSQueue:

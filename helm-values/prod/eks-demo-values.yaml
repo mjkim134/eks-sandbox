@@ -79,6 +79,7 @@ podDisruptionBudget:
   minAvailable: 1
 
 keda:
+  enabled: true
   minReplicaCount: 5
   maxReplicaCount: 20
   awsSQSQueue:
