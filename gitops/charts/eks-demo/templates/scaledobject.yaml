@@ -24,3 +24,4 @@ spec:
       metricType: Utilization
       metadata:
         value: {{ .Values.keda.cpu.value | quote }}
+{{- end }}
