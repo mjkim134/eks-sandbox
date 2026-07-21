@@ -30,8 +30,6 @@ grafana:
     accessModes:
     - ReadWriteOnce
     size: 5Gi
-    finalizers:
-    - kubernetes.io/pvc-protection
   nodeSelector:
     eks.amazonaws.com/nodegroup: init
   tolerations:
