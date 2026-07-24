@@ -3,6 +3,8 @@ kind: EC2NodeClass
 metadata:
   name: eks-sandbox-prod
 spec:
+  kubelet:
+    maxPods: 110
   role: arn:aws:iam::728138073365:role/eks-sandbox-prod-karpenter-node
   amiSelectorTerms:
     - alias: "al2023@v20260423"
