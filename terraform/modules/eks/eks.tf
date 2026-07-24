@@ -106,6 +106,21 @@ module "eks" {
 
       enable_efa_only = false
 
+      cloudinit_pre_nodeadm = [
+        {
+          content_type = "application/node.eks.aws"
+          content      = <<-EOT
+            ---
+            apiVersion: node.eks.aws/v1alpha1
+            kind: NodeConfig
+            spec:
+              kubelet:
+                config:
+                  maxPods: 110
+          EOT
+        }
+      ]
+
       block_device_mappings = {
         xvda = {
           device_name = "/dev/xvda"
