@@ -149,8 +149,7 @@ module "eks" {
       subnet_ids = var.private_subnets
 
       tags = {
-        Name                                        = "init"
-        "kubernetes.io/cluster/${var.cluster_name}" = "owned"
+        Name = "init"
       }
     }
   }
