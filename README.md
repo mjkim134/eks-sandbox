@@ -1,4 +1,4 @@
-멀티 클러스터(Dev/Prod) 환경을 가정하여 Terraform 코드를 구성한 뒤, Dev 환경에서 KEDA와 Karpenter 기반의 오토스케일링 아키텍처를 실습하고 검증한 EKS 샌드박스 프로젝트입니다.
+###멀티 클러스터(Dev/Prod) 환경을 가정하여 Terraform 코드를 구성한 뒤, Dev 환경에서 KEDA와 Karpenter 기반의 오토스케일링 아키텍처를 실습하고 검증한 EKS 샌드박스 프로젝트입니다.
 
 - `/.github/workflows`: GitHub Actions 기반 CI 파이프라인 (이미지 빌드 및 ECR 푸시)
 - `/eks-demo`: EKS 테스트용 Spring Boot 애플리케이션
