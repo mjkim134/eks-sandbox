@@ -18,26 +18,31 @@ SQS Queue 기반 이벤트 처리 환경을 가정하여 KEDA 기반 Pod Autosca
 .
 ├── .github
 │   └── workflows
-│       └── ci.yaml
+│       └── ci-pipeline.yml    # GitHub Actions CI 구성
 │
-├── terraform
+├── docs
+│   └── images
+│
+├── terraform                  # Terraform EKS/VPC Module 및 환경별 분리
 │   ├── modules
-│   └── environments
+│   │   ├── eks
+│   │   └── vpc
+│   └── envs
+│       ├── dev
+│       └── prod
 │
-├── gitops
-│   ├── bootstrap
-│   ├── applications
-│   └── addons
+├── gitops                     # Application CRD를 활용해 단계별 Apply 수행을 위한 디렉토리 구조
+│   ├── charts
+│   └── envs
+│       ├── dev
+│       └── prod
 │
-├── helm-values
-│   ├── argocd
-│   ├── karpenter
-│   └── monitoring
+├── helm-values                # 환경별 Helm values 구성
+│   ├── dev
+│   └── prod
 │
-├── init-manifests
-│   ├── storageclass
-│   ├── nodepool
-│   └── secrets
+├── init-manifests             # 운영 전 클러스터에 필요한 CRD 및 manifests
+│   ├── dev
+│   └── prod
 │
-└── eks-demo
-    └── spring-boot-app
+└── eks-demo                   # 스프링부트 데모 앱
