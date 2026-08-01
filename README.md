@@ -1,8 +1,43 @@
-### 멀티 클러스터(Dev/Prod) 환경을 가정한 Terraform 코드를 구성한 뒤, Dev 환경에서 KEDA와 Karpenter 기반의 오토스케일링 아키텍처를 실습하고 검증한 EKS 샌드박스 프로젝트입니다.
+# EKS 기반 클라우드 인프라 구축 및 GitOps 운영 기반 환경 설계
 
-- `/.github/workflows`: GitHub Actions 기반 CI 파이프라인 (이미지 빌드 및 ECR 푸시)
-- `/eks-demo`: EKS 테스트용 Spring Boot 애플리케이션
-- `/gitops`: ArgoCD 'App of Apps' 패턴을 활용한 클러스터 부트스트래핑
-- `/helm-values`: 클러스터 내부 애드온과 app 헬름 values
-- `/init-manifests`: 클러스터 전역 인프라 매니페스트 (StorageClass, NodePool, ClusterSecretStore 등)
-- `/terraform`: Terraform 기반 인프라 프로비저닝 (VPC, EKS, IRSA, Addons, ECR)
+Terraform, Helm, ArgoCD 기반으로 확장 가능한 AWS EKS 운영 환경을 설계하고 구축한 개인 프로젝트입니다.
+
+IaC 기반 인프라 프로비저닝부터 GitOps 배포 자동화, Kubernetes 운영 환경 구성, Event Driven Autoscaling 및 Observability 환경까지 Kubernetes 기반 운영 플랫폼 구축 과정을 검증했습니다.
+
+SQS Queue 기반 이벤트 처리 환경을 가정하여 KEDA 기반 Pod Autoscaling과 Karpenter 기반 Node Provisioning 구조를 구현하고, Locust 부하 테스트와 Prometheus/Grafana를 활용하여 Scale-out 과정을 검증했습니다.
+
+
+## Architecture
+![alt text](docs/images/eks.png)
+
+## GitOps Structure
+![alt text](docs/images/gitops.png)
+
+## Repository Structure
+```text
+.
+├── .github
+│   └── workflows
+│       └── ci.yaml
+│
+├── terraform
+│   ├── modules
+│   └── environments
+│
+├── gitops
+│   ├── bootstrap
+│   ├── applications
+│   └── addons
+│
+├── helm-values
+│   ├── argocd
+│   ├── karpenter
+│   └── monitoring
+│
+├── init-manifests
+│   ├── storageclass
+│   ├── nodepool
+│   └── secrets
+│
+└── eks-demo
+    └── spring-boot-app
