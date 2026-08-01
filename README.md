@@ -39,7 +39,7 @@ SQS Queue 기반 이벤트 처리 환경을 가정하여 KEDA 기반 Pod Autosca
 │   └── prod
 │
 └── eks-demo                   # 스프링부트 데모 앱
-
+```
 ## Architecture
 ![alt text](docs/images/eks.png)
 
