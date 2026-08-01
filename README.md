@@ -6,13 +6,6 @@ IaC 기반 인프라 프로비저닝부터 GitOps 배포 자동화, Kubernetes �
 
 SQS Queue 기반 이벤트 처리 환경을 가정하여 KEDA 기반 Pod Autoscaling과 Karpenter 기반 Node Provisioning 구조를 구현하고, Locust 부하 테스트와 Prometheus/Grafana를 활용하여 Scale-out 과정을 검증했습니다.
 
-
-## Architecture
-![alt text](docs/images/eks.png)
-
-## GitOps Structure
-![alt text](docs/images/gitops.png)
-
 ## Repository Structure
 ```text
 .
@@ -46,3 +39,9 @@ SQS Queue 기반 이벤트 처리 환경을 가정하여 KEDA 기반 Pod Autosca
 │   └── prod
 │
 └── eks-demo                   # 스프링부트 데모 앱
+
+## Architecture
+![alt text](docs/images/eks.png)
+
+## GitOps Structure
+![alt text](docs/images/gitops.png)
