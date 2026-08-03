@@ -1,6 +1,7 @@
 # EKS 기반 클라우드 인프라 구축 및 GitOps 운영 기반 환경 설계
 
-Terraform 기반 AWS EKS 인프라와 ArgoCD GitOps 환경을 구성한 프로젝트입니다.
+Terraform 기반으로 Dev/Prod 환경을 고려한 AWS EKS 인프라를 구성하고,
+ArgoCD GitOps 기반 배포 구조와 KEDA/Karpenter를 활용한 자동 확장 환경을 검증한 프로젝트입니다.
 
 ## Repository Structure
 ```text
