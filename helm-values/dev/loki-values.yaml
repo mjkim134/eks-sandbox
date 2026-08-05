@@ -1,0 +1,94 @@
+loki:
+  commonConfig:
+    replication_factor: 3
+  schemaConfig:
+    configs:
+      - from: "2024-04-01"
+        store: tsdb
+        object_store: s3
+        schema: v13
+        index:
+          prefix: loki_index_
+          period: 24h
+  storage_config:
+    aws:
+      region: ap-northeast-2
+      bucketnames: eks-sandbox-dev-loki
+      s3forcepathstyle: false
+  pattern_ingester:
+    enabled: true
+  limits_config:
+    allow_structured_metadata: true
+    volume_enabled: true
+    retention_period: 672h # 28 days retention
+
+  storage:
+    type: s3
+    bucketNames:
+      chunks: eks-sandbox-dev-loki
+      ruler: eks-sandbox-dev-loki
+      admin: eks-sandbox-dev-loki
+    s3:
+      # AWS endpoint URL
+      endpoint: s3.ap-northeast-2.amazonaws.com
+      # AWS region where the S3 bucket is located
+      region: ap-northeast-2
+      # AWS signature version (e.g., v2 or v4)
+      signatureVersion: v4
+
+# Disable minio storage
+minio:
+  enabled: false
+
+deploymentMode: Monolithic
+
+singleBinary:
+  replicas: 3
+  persistence:
+    storageClass: gp3
+    accessModes:
+      - ReadWriteOnce
+    size: 30Gi
+
+# Zero out replica counts of other deployment modes
+backend:
+  replicas: 0
+read:
+  replicas: 0
+write:
+  replicas: 0
+
+ingester:
+  replicas: 0
+querier:
+  replicas: 0
+queryFrontend:
+  replicas: 0
+queryScheduler:
+  replicas: 0
+distributor:
+  replicas: 0
+compactor:
+  replicas: 0
+indexGateway:
+  replicas: 0
+bloomPlanner:
+  replicas: 0
+bloomBuilder:
+  replicas: 0
+bloomGateway:
+  replicas: 0
+
+monitoring:
+  serviceMonitor:
+    enabled: true
+  rules:
+    enabled: true   # recording rules only
+  alerts:
+    enabled: true   # alert rules (separate since chart 18.0.0)
+  dashboards:
+    enabled: true
+
+serviceAccount:
+  name: loki
+  annotations: arn:aws:iam::728138073365:role/eks-sandbox-dev-loki-role
