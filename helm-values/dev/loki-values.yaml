@@ -91,4 +91,5 @@ monitoring:
 
 serviceAccount:
   name: loki
-  annotations: arn:aws:iam::728138073365:role/eks-sandbox-dev-loki-role
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::728138073365:role/eks-sandbox-dev-loki-role
