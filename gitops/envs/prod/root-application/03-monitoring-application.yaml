@@ -5,14 +5,12 @@ metadata:
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "4"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: gitops/envs/dev/monitoring-application
+    path: gitops/envs/prod/monitoring-application
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

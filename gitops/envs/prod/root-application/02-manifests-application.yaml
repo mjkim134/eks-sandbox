@@ -1,18 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: addons-application
+  name: manifests-application
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: default
   source:
     repoURL: https://github.com/mjkim134/eks-sandbox.git
     targetRevision: HEAD
-    path: gitops/envs/prod/addons-application
+    path: gitops/envs/dev/manifests-application
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
