@@ -1,3 +1,13 @@
+data "terraform_remote_state" "sqs" {
+  backend = "s3"
+
+  config = {
+    bucket = "eks-sandbox-apne2-tfstate"
+    key    = "envs/prod/apps/eks-demo/terraform.tfstate"
+    region = "ap-northeast-2"
+  }
+}
+
 module "keda_irsa" {
   source = "terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts"
 
@@ -30,8 +40,8 @@ resource "aws_iam_policy" "keda_policy" {
           "sqs:GetQueueAttributes"
         ]
         Resource = [
-          module.sqs.queue_arn,
-          module.sqs.dead_letter_queue_arn
+          data.terraform_remote_state.sqs.outputs.queue_arn,
+          data.terraform_remote_state.sqs.outputs.dead_letter_queue_arn
         ]
       }
     ]
@@ -71,8 +81,8 @@ resource "aws_iam_policy" "eks_demo_policy" {
           "sqs:GetQueueUrl"
         ]
         Resource = [
-          module.sqs.queue_arn,
-          module.sqs.dead_letter_queue_arn
+          data.terraform_remote_state.sqs.outputs.queue_arn,
+          data.terraform_remote_state.sqs.outputs.dead_letter_queue_arn
         ]
       }
     ]
