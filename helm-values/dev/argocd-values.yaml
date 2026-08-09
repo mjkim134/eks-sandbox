@@ -9,7 +9,7 @@ controller:
 
 server:
   ingress:
-    enabled: false
+    enabled: true
     ingressClassName: alb
     hostname: argocd.dev.mjkim.click
     annotations:
