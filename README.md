@@ -10,7 +10,7 @@ AWS EKS 기반 인프라를 Terraform으로 구축하고, ArgoCD 기반 GitOps�
 │   │   ├── eks/
 │   │   └── vpc/
 │   └── envs/
-│       ├── global/
+│       ├── global/                   # ECR, KMS, SSM 등 환경에 의존하지 않는 리소스
 │       ├── dev/
 │       │   ├── eks/
 │       │   ├── vpc/
@@ -19,7 +19,7 @@ AWS EKS 기반 인프라를 Terraform으로 구축하고, ArgoCD 기반 GitOps�
 │       └── prod/
 │
 ├── gitops/                            # ArgoCD Application 기반 단계별 배포 구조
-│   ├── charts/
+│   ├── charts/                        # 데모 앱 헬름 차트
 │   └── envs/
 │       ├── dev/
 │       │   ├── root-application/      # App of Apps 구조의 Root Application
