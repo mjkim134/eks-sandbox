@@ -38,7 +38,7 @@ AWS EKS 기반 인프라를 Terraform으로 구축하고, ArgoCD 기반 GitOps�
 │
 └── eks-demo/                          # 스프링부트 데모 앱
 ```
-## Architecture (Single NAT Gateway)
+## EKS Architecture (Single NAT Gateway)
 ![alt text](docs/images/eks.png)
 
 ## GitOps Structure
