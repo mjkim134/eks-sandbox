@@ -54,6 +54,7 @@ jobs:
       with:
         aws-region: ${{ env.REGION }}
         role-to-assume: ${{ secrets.ASSUME_IAM_ROLE }}
+        role-session-name: gh-oidc-${{ github.run_id }}-${{ github.run_attempt }}
 
     # ECR LOGIN
     - name: Login to Amazon ECR
