@@ -8,7 +8,7 @@ resource "aws_cloudtrail" "example" {
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket        = "tf-test-trail"
+  bucket        = "eks-sandbox-apne2-trail"
   force_destroy = true
 }
 
