@@ -1,0 +1,37 @@
+name: eks-demo tests
+
+on:
+  pull_request:
+    paths:
+      - 'eks-demo/**'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eks-demo-tests-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Gradle test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: eks-demo
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle cache
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Run tests
+        run: ./gradlew test --no-daemon
