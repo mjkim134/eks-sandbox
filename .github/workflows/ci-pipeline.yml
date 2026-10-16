@@ -1,6 +1,11 @@
 name: Java CI with Gradle
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'eks-demo/**'
   pull_request:
     branches:
       - main
