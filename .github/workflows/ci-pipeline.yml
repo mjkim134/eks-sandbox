@@ -22,7 +22,7 @@ concurrency:
 env:
   REGION: ap-northeast-2
   APP_NAME: eks-demo
-  TRIVY_VERSION: 0.74.0
+  TRIVY_VERSION: v0.74.0
   VALUES_FILE: helm-values/dev/eks-demo-values.yaml
 
 jobs:
