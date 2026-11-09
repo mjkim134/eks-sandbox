@@ -1,33 +1,40 @@
-name: Java CI with Gradle
+name: eks-demo CI/CD
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - 'eks-demo/**'
   pull_request:
-    branches:
-      - main
-    types: [closed]
+    branches: [main]
     paths:
       - 'eks-demo/**'
-    
+      - '.github/workflows/ci-pipeline.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'eks-demo/**'
+      - '.github/workflows/ci-pipeline.yml'
+
 permissions:
-  id-token: write
-  contents: write
-  packages: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'push' && 'deploy' || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   REGION: ap-northeast-2
   APP_NAME: eks-demo
-  TRIVY_VERSION: 0.74.0
+  TRIVY_VERSION: v0.74.0
+  VALUES_FILE: helm-values/dev/eks-demo-values.yaml
 
 jobs:
-  scan:
+  # PR: 테스트 → 이미지 빌드 → 취약점 게이트 (AWS 접근 없음, 읽기 권한만)
+  pr-check:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: ./eks-demo
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -35,83 +42,99 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle for Trivy Scan
+      - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      - name: Build with Gradle Wrapper for Trivy Scan
-        run: ./gradlew bootBuildImage --imageName=${{ env.APP_NAME }}:ci
+      - name: Test
+        run: ./gradlew test
+
+      - name: Build image
+        run: docker build -t "${APP_NAME}:ci" .
 
       - uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567
         with:
           version: ${{ env.TRIVY_VERSION }}
           cache: true
+
       - name: Trivy 게이트 (고칠 수 있는 CRITICAL이 있으면 실패)
-        run: trivy image --exit-code 1 --severity CRITICAL --ignore-unfixed ${{ env.APP_NAME }}:ci
+        run: trivy image --exit-code 1 --severity CRITICAL --ignore-unfixed "${APP_NAME}:ci"
 
-
-  build:
-    needs: scan
-    if: github.ref == 'refs/heads/main' && github.event.pull_request.merged == true
+  # main push: 테스트 → 빌드 → 스캔 → ECR push → helm 태그 갱신
+  build-and-deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
-
+    permissions:
+      contents: write   # helm values 커밋/푸시
+      id-token: write   # AWS OIDC
     defaults:
       run:
         working-directory: ./eks-demo
-    
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    # Get Short SHA in 8 Length
-    - name: get shortsha
-      id: vars
-      run: |
-        echo "sha_short=$(git rev-parse --short=8 ${{ github.sha }})" >> $GITHUB_OUTPUT
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
 
-    # Configure Gradle for optimal use in GitHub Actions, including caching of downloaded dependencies.
-    # See: https://github.com/gradle/actions/blob/main/setup-gradle/README.md
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v4
+      - name: Test
+        run: ./gradlew test
 
-    - name: Build with Gradle Wrapper
-      run: ./gradlew bootBuildImage --imageName=${{ secrets.AWS_ACCOUNT_NUM }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/${{ env.APP_NAME }}:d${{ steps.vars.outputs.sha_short }}
+      - name: Set image tag
+        id: vars
+        run: echo "tag=d${GITHUB_SHA::8}" >> "$GITHUB_OUTPUT"
 
-    # AWS 인증
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        aws-region: ${{ env.REGION }}
-        role-to-assume: ${{ secrets.ASSUME_IAM_ROLE }}
-        role-session-name: gh-oidc-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: ${{ env.REGION }}
+          role-to-assume: ${{ secrets.ASSUME_IAM_ROLE }}
+          role-session-name: gh-oidc-${{ github.run_id }}-${{ github.run_attempt }}
 
-    # ECR LOGIN
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v2
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
 
-    - name: Publish Docker image
-      run: |
-          docker push ${{ secrets.AWS_ACCOUNT_NUM }}.dkr.ecr.${{ env.REGION }}.amazonaws.com/${{ env.APP_NAME }}:d${{ steps.vars.outputs.sha_short }}    
+      - name: Set image name
+        env:
+          REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          TAG: ${{ steps.vars.outputs.tag }}
+        run: echo "IMAGE=${REGISTRY}/${APP_NAME}:${TAG}" >> "$GITHUB_ENV"
 
-    - name: Change Image tag
-      run: |
-        sed -i "s|tag: .*|tag: \"d${{ steps.vars.outputs.sha_short }}\"|g" ../helm-values/dev/eks-demo-values.yaml
-        ls
-      shell: bash
+      - name: Build image
+        run: docker build -t "$IMAGE" .
 
-    - name: GIT commit and push docs
-      env:
-        CI_COMMIT_MESSAGE: Update Tag - d${{ steps.vars.outputs.sha_short }}
-        CI_COMMIT_AUTHOR: mjkim134
-      run: |
-        git config --global user.name "${{ env.CI_COMMIT_AUTHOR }}"
-        git config --global user.email "mjkim134@gmail.com"
-        git status
-        git add ../helm-values/dev/eks-demo-values.yaml
-        git commit -m "${{ env.CI_COMMIT_MESSAGE }}"
-        git push origin main
+      - uses: aquasecurity/setup-trivy@81e514348e19b6112ce2a7e3ecbafe19c1e1f567
+        with:
+          version: ${{ env.TRIVY_VERSION }}
+          cache: true
+
+      - name: Trivy 게이트 (push 전 검사)
+        run: trivy image --exit-code 1 --severity CRITICAL --ignore-unfixed "$IMAGE"
+
+      - name: Push image
+        run: docker push "$IMAGE"
+
+      - name: Update image tag
+        working-directory: .
+        env:
+          TAG: ${{ steps.vars.outputs.tag }}
+        # image: 블록 안의 tag 줄만 교체 (다음 최상위 키에서 범위 종료, 파일 서식은 유지)
+        run: sed -i -E "/^image:/,/^[^[:space:]#]/ s|^([[:space:]]+tag:).*|\1 \"${TAG}\"|" "$VALUES_FILE"
+
+      - name: Commit and push tag
+        working-directory: .
+        env:
+          TAG: ${{ steps.vars.outputs.tag }}
+        run: |
+          git config user.name  "mjkim134"
+          git config user.email "mjkim134@gmail.com"
+          git add "$VALUES_FILE"
+          git diff --cached --quiet && { echo "No changes"; exit 0; }
+          git commit -m "Update Tag - ${TAG}"
+          git pull --rebase origin main
+          git push origin main
